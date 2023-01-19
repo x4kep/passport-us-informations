@@ -3,14 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
+import TermsConditions from "./components/terms-conditions/terms-conditions.component";
 import Main from "./components/main/main.component";
 
 const Support = () => {
   return <h1>Support</h1>;
-};
-
-const TermsConditions = () => {
-  return <h1>TermsConditions</h1>;
 };
 
 const PolicyPrivacy = () => {
@@ -21,7 +18,7 @@ const PolicyRefund = () => {
   return <h1>PolicyRefund</h1>;
 };
 
-const LegalDisclamer = () => {
+const LegalDisclaimer = () => {
   return <h1>LegalDisclamer</h1>;
 };
 
@@ -39,7 +36,7 @@ function App() {
         <Route path="/terms-conditions" element={<TermsConditions />} />
         <Route path="/policy-privacy" element={<PolicyPrivacy />} />
         <Route path="/policy-refund" element={<PolicyRefund />} />
-        <Route path="/legal-disclamer" element={<LegalDisclamer />} />
+        <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
         <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
       <Footer></Footer>
