@@ -1,0 +1,25 @@
+.header {
+  background-color: #2d2d62;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 15px 100px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo__icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.logo__title {
+  font-weight: 700;
+  font-size: 2rem;
+  color: white;
+}
