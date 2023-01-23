@@ -2,6 +2,14 @@ body {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 10px;
+  max-width: 100%;
+  min-height: 100vh;
+  background-image: url("./assets/passport-desk-toy-airplane.jpg");
+  height: 100%;
+  background-position: 25% 140%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: calc(100vh - 320px);
 }
 
 * {
@@ -140,4 +148,9 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+.dummy-page {
+  background-color: white;
+  padding: 0 1 px;
 }

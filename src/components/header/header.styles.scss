@@ -4,11 +4,13 @@
   justify-content: space-between;
   color: white;
   padding: 15px 100px;
-  margin-bottom: 20px;
   &__settings {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+  @media only screen and (max-width: 600px) {
+    padding: 15px 15px;
   }
 }
 
@@ -37,15 +39,11 @@
 }
 
 .native-select--light {
-  position: relative;
-  top: 2px;
   background-color: white;
   padding-left: 3px;
 }
 
 .nav-link {
-  position: relative;
-  top: 2px;
   &-spacer {
     padding: 0 0.6rem;
     font-weight: bold;

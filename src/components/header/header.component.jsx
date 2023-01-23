@@ -38,11 +38,9 @@ function Header() {
           </FormControl>
         </Box>
         <Box sx={{ ml: 3 }}>
-          <Button variant="contained">
-            <Link className="nav-link nav-link--white" to="/support">
-              Support
-            </Link>
-          </Button>
+          <Link className="nav-link nav-link--white" to="/live-help">
+            <Button variant="contained">Live Help</Button>
+          </Link>
         </Box>
       </div>
     </header>

@@ -9,16 +9,26 @@ import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormLabel from "@mui/material/FormLabel";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 function Main() {
   return (
     <main className="main">
       <div className="get-started-container">
-        <div className="get-started-container__header">
-          <h1 className="get-started-container__header-title">Get Started</h1>
-        </div>
+        <Typography
+          sx={{
+            pt: 3,
+            textAlign: "center",
+            fontSize: 40,
+            fontWeight: 500,
+            letterSpacing: 0,
+            textTransform: "uppercase",
+          }}
+        >
+          Get started
+        </Typography>
         <div className="get-started-container__content">
-          <Box sx={{ pb: 2 }}>
+          <Box sx={{ pt: 2 }}>
             <FormControl fullWidth>
               <InputLabel variant="standard" htmlFor="uncontrolled-native">
                 What is your citizenship ?
@@ -43,7 +53,7 @@ function Main() {
               </NativeSelect>
             </FormControl>
           </Box>
-          <Box sx={{ pb: 2 }}>
+          <Box sx={{ pt: 2 }}>
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox defaultChecked />}
@@ -51,7 +61,7 @@ function Main() {
               />
             </FormGroup>
           </Box>
-          <Box sx={{ pb: 2 }}>
+          <Box sx={{ pt: 2 }}>
             <FormControl component="fieldset" variant="standard">
               <FormLabel component="legend">
                 Select reason(s) for travel to United States
@@ -77,11 +87,11 @@ function Main() {
             </FormControl>
           </Box>
           <Box sx={{ textAlign: "center" }}>
-            <Button variant="contained" size="large" fullWidth>
-              <Link className="nav-link nav-link--white" to="/support">
+            <Link className="nav-link nav-link--white" to="/summary">
+              <Button variant="contained" size="large" fullWidth>
                 Continue
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </Box>
         </div>
       </div>
