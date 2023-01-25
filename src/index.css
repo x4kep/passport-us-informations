@@ -154,3 +154,9 @@ table {
   background-color: white;
   padding: 0 1 px;
 }
+
+.label {
+  text-transform: uppercase;
+  font-weight: bold !important;
+  color: #024c8b;
+}

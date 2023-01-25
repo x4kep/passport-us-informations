@@ -2,6 +2,7 @@ import "./footer.styles.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { Box } from "@mui/system";
+import Typography from "@mui/material/Typography";
 
 function Footer() {
   return (
@@ -13,10 +14,12 @@ function Footer() {
         </div>
       </Link>
       <Box sx={{ textAlign: "center", mb: 3 }}>
-        <p>Copyright © 2016-2023 GovAssist, LLC All Rights Reserved</p>
+        <Typography>
+          Copyright © 2016-2023 GovAssist, LLC All Rights Reserved
+        </Typography>
       </Box>
       <Box sx={{ textAlign: "left", mb: 3 }}>
-        <p>
+        <Typography>
           Disclaimer: GovAssist was developed to provide visitors from all over
           the world with information about immigration topics.
           https://govassist.com is not affiliated with the United States
@@ -35,7 +38,7 @@ function Footer() {
           immigration professionals can provide advice, explanation, opinion, or
           recommendation about possible legal rights, remedies, defenses,
           options, selection of forms or strategies.
-        </p>
+        </Typography>
       </Box>
       <Box sx={{ textAlign: "center", pb: 3 }}>
         <div className="navigation">
@@ -52,7 +55,7 @@ function Footer() {
           </Link>
           <span className="nav-link-spacer">|</span>
           <Link className="nav-link" to="/legal-disclamer">
-            Legal Disclamer
+            Legal Disclaimer
           </Link>
           <span className="nav-link-spacer">|</span>
           <Link className="nav-link" to="/contact-us">
