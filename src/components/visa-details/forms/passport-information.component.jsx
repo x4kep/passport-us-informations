@@ -5,1431 +5,1413 @@ import {
   Checkbox,
   FormControlLabel,
   Grid,
-  NativeSelect,
-  Box,
   Divider,
   RadioGroup,
   Radio,
   Container,
+  Tooltip,
+  IconButton,
+  MenuItem,
+  Button,
 } from "@mui/material";
 import { Stack } from "@mui/system";
+import HelpIcon from "@mui/icons-material/Help";
+import countries from "../../../data/countries.json";
+import { Form, Formik, Field } from "formik";
+import { object, string, date, mixed } from "yup";
+
+const initialValues = {
+  passportTravelDocumentType: "",
+  passportTravelDocumentTypeOtherExplain: "",
+  passportTravelDocumentNumber: "",
+  passportBookNumber: "",
+  passportBookNumberDisabled: false,
+  countryAuthority: "",
+  city: "",
+  stateRegionProvince: "",
+  countryRegion: "",
+  passportIssuanceDate: "",
+  passportExpirationDate: "",
+  passportExpirationDateDisabled: false,
+  lostPassport: "",
+  lostPassportDocumentNumber: "",
+  lostPassportDocumentNumberDisabled: false,
+  lostPassportCountryAuthorityIssued: "",
+  lostPassportExplain: "",
+  countryRegionOrigin: "",
+  otherNationality: "",
+  otherNationalityCountryRegion: "",
+  otherNationalityCountryRegionTravelDocumentNumber: "",
+  otherNationalityCountry: "",
+  otherNationalityPassport: "",
+  otherCountry: "",
+  otherCountryRegion: "",
+  otherCountryRegionAbove: "",
+  otherCountryRegionAbovePermanentResident: "",
+  nationalIdentificationNumber: "",
+  nationalIdentificationNumberDisabled: false,
+  usSocialSecurityAreaNumber: "",
+  usSocialSecurityAreaNumberDisabled: false,
+  usSocialSecurityGroup: "",
+  usSocialSecurityGroupDisabled: false,
+  usSocialSecuritySerialNumber: "",
+  usSocialSecuritySerialNumberDisabled: false,
+  usSocialTaxpayerNumber: "",
+  usSocialTaxpayerNumberDisabled: false,
+};
 
 function PassportInformation() {
   return (
-    <Container
-      component="main"
-      maxWidth="false"
-      sx={{
-        p: 2,
-        pb: 4,
-      }}
-    >
-      <Typography variant="h4">Passport Information</Typography>
-      <Divider sx={{ pt: 4, mb: 4, borderColor: "#1976d2" }} />
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Stack
-            direction={{ sx: "column", md: "row" }}
-            spacing={2}
-            sx={{ justifyContent: "space-between" }}
-            alignItems={{ sx: "left", md: "center" }}
-          >
-            <Typography
-              className="label"
-              maxWidth={{ sx: "100%", md: "30%" }}
-              minWidth={{ sx: "100%", md: "30%" }}
-            >
-              Passport / Travel document type
-            </Typography>
-            <NativeSelect defaultValue="regular" fullWidth>
-              <option value="regular">Regular</option>
-              <option value="official">Official</option>
-              <option value="diplomatic">Diplomatic</option>
-              <option value="laissez-passer">Laissez-passer</option>
-              <option value="other">Other</option>
-            </NativeSelect>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Passport / Travel document Number
-            </Typography>
-            <TextField
-              fullWidth
-              variant="standard"
-              label="Travel document Number"
-              required
-            >
-              Enter the passport number exactly as it appears on the passport
-              information page
-            </TextField>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Passport book number
-            </Typography>
-            <TextField
-              variant="standard"
-              label="Travel document Number"
-              fullWidth
-              required
-            >
-              Please select a Passport Book Number if applicable, or tick does
-              not apply
-            </TextField>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
-              label="Does not apply"
-              sx={{ minWidth: { xs: 40, md: 150 } }}
-            />
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Country / Authority that issued the passport / travel document
-            </Typography>
-            <NativeSelect defaultValue="regular" fullWidth>
-              <option>Select country</option>
-              <option value="AF">Afghanistan</option>
-              <option value="AX">Aland Islands</option>
-              <option value="AL">Albania</option>
-              <option value="DZ">Algeria</option>
-              <option value="AS">American Samoa</option>
-              <option value="AD">Andorra</option>
-              <option value="AO">Angola</option>
-              <option value="AI">Anguilla</option>
-              <option value="AQ">Antarctica</option>
-              <option value="AG">Antigua and Barbuda</option>
-              <option value="AR">Argentina</option>
-              <option value="AM">Armenia</option>
-              <option value="AW">Aruba</option>
-              <option value="AU">Australia</option>
-              <option value="AT">Austria</option>
-              <option value="AZ">Azerbaijan</option>
-              <option value="BS">Bahamas</option>
-              <option value="BH">Bahrain</option>
-              <option value="BD">Bangladesh</option>
-              <option value="BB">Barbados</option>
-              <option value="BY">Belarus</option>
-              <option value="BE">Belgium</option>
-              <option value="BZ">Belize</option>
-              <option value="BJ">Benin</option>
-              <option value="BM">Bermuda</option>
-              <option value="BT">Bhutan</option>
-              <option value="BO">Bolivia</option>
-              <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-              <option value="BA">Bosnia and Herzegovina</option>
-              <option value="BW">Botswana</option>
-              <option value="BV">Bouvet Island</option>
-              <option value="BR">Brazil</option>
-              <option value="IO">British Indian Ocean Territory</option>
-              <option value="BN">Brunei Darussalam</option>
-              <option value="BG">Bulgaria</option>
-              <option value="BF">Burkina Faso</option>
-              <option value="BI">Burundi</option>
-              <option value="KH">Cambodia</option>
-              <option value="CM">Cameroon</option>
-              <option value="CA">Canada</option>
-              <option value="CV">Cape Verde</option>
-              <option value="KY">Cayman Islands</option>
-              <option value="CF">Central African Republic</option>
-              <option value="TD">Chad</option>
-              <option value="CL">Chile</option>
-              <option value="CN">China</option>
-              <option value="CX">Christmas Island</option>
-              <option value="CC">Cocos (Keeling) Islands</option>
-              <option value="CO">Colombia</option>
-              <option value="KM">Comoros</option>
-              <option value="CG">Congo</option>
-              <option value="CD">
-                Congo, Democratic Republic of the Congo
-              </option>
-              <option value="CK">Cook Islands</option>
-              <option value="CR">Costa Rica</option>
-              <option value="CI">Cote D'Ivoire</option>
-              <option value="HR">Croatia</option>
-              <option value="CU">Cuba</option>
-              <option value="CW">Curacao</option>
-              <option value="CY">Cyprus</option>
-              <option value="CZ">Czech Republic</option>
-              <option value="DK">Denmark</option>
-              <option value="DJ">Djibouti</option>
-              <option value="DM">Dominica</option>
-              <option value="DO">Dominican Republic</option>
-              <option value="EC">Ecuador</option>
-              <option value="EG">Egypt</option>
-              <option value="SV">El Salvador</option>
-              <option value="GQ">Equatorial Guinea</option>
-              <option value="ER">Eritrea</option>
-              <option value="EE">Estonia</option>
-              <option value="ET">Ethiopia</option>
-              <option value="FK">Falkland Islands (Malvinas)</option>
-              <option value="FO">Faroe Islands</option>
-              <option value="FJ">Fiji</option>
-              <option value="FI">Finland</option>
-              <option value="FR">France</option>
-              <option value="GF">French Guiana</option>
-              <option value="PF">French Polynesia</option>
-              <option value="TF">French Southern Territories</option>
-              <option value="GA">Gabon</option>
-              <option value="GM">Gambia</option>
-              <option value="GE">Georgia</option>
-              <option value="DE">Germany</option>
-              <option value="GH">Ghana</option>
-              <option value="GI">Gibraltar</option>
-              <option value="GR">Greece</option>
-              <option value="GL">Greenland</option>
-              <option value="GD">Grenada</option>
-              <option value="GP">Guadeloupe</option>
-              <option value="GU">Guam</option>
-              <option value="GT">Guatemala</option>
-              <option value="GG">Guernsey</option>
-              <option value="GN">Guinea</option>
-              <option value="GW">Guinea-Bissau</option>
-              <option value="GY">Guyana</option>
-              <option value="HT">Haiti</option>
-              <option value="HM">Heard Island and Mcdonald Islands</option>
-              <option value="VA">Holy See (Vatican City State)</option>
-              <option value="HN">Honduras</option>
-              <option value="HK">Hong Kong</option>
-              <option value="HU">Hungary</option>
-              <option value="IS">Iceland</option>
-              <option value="IN">India</option>
-              <option value="ID">Indonesia</option>
-              <option value="IR">Iran, Islamic Republic of</option>
-              <option value="IQ">Iraq</option>
-              <option value="IE">Ireland</option>
-              <option value="IM">Isle of Man</option>
-              <option value="IL">Israel</option>
-              <option value="IT">Italy</option>
-              <option value="JM">Jamaica</option>
-              <option value="JP">Japan</option>
-              <option value="JE">Jersey</option>
-              <option value="JO">Jordan</option>
-              <option value="KZ">Kazakhstan</option>
-              <option value="KE">Kenya</option>
-              <option value="KI">Kiribati</option>
-              <option value="KP">Korea, Democratic People's Republic of</option>
-              <option value="KR">Korea, Republic of</option>
-              <option value="XK">Kosovo</option>
-              <option value="KW">Kuwait</option>
-              <option value="KG">Kyrgyzstan</option>
-              <option value="LA">Lao People's Democratic Republic</option>
-              <option value="LV">Latvia</option>
-              <option value="LB">Lebanon</option>
-              <option value="LS">Lesotho</option>
-              <option value="LR">Liberia</option>
-              <option value="LY">Libyan Arab Jamahiriya</option>
-              <option value="LI">Liechtenstein</option>
-              <option value="LT">Lithuania</option>
-              <option value="LU">Luxembourg</option>
-              <option value="MO">Macao</option>
-              <option value="MK">
-                Macedonia, the Former Yugoslav Republic of
-              </option>
-              <option value="MG">Madagascar</option>
-              <option value="MW">Malawi</option>
-              <option value="MY">Malaysia</option>
-              <option value="MV">Maldives</option>
-              <option value="ML">Mali</option>
-              <option value="MT">Malta</option>
-              <option value="MH">Marshall Islands</option>
-              <option value="MQ">Martinique</option>
-              <option value="MR">Mauritania</option>
-              <option value="MU">Mauritius</option>
-              <option value="YT">Mayotte</option>
-              <option value="MX">Mexico</option>
-              <option value="FM">Micronesia, Federated States of</option>
-              <option value="MD">Moldova, Republic of</option>
-              <option value="MC">Monaco</option>
-              <option value="MN">Mongolia</option>
-              <option value="ME">Montenegro</option>
-              <option value="MS">Montserrat</option>
-              <option value="MA">Morocco</option>
-              <option value="MZ">Mozambique</option>
-              <option value="MM">Myanmar</option>
-              <option value="NA">Namibia</option>
-              <option value="NR">Nauru</option>
-              <option value="NP">Nepal</option>
-              <option value="NL">Netherlands</option>
-              <option value="AN">Netherlands Antilles</option>
-              <option value="NC">New Caledonia</option>
-              <option value="NZ">New Zealand</option>
-              <option value="NI">Nicaragua</option>
-              <option value="NE">Niger</option>
-              <option value="NG">Nigeria</option>
-              <option value="NU">Niue</option>
-              <option value="NF">Norfolk Island</option>
-              <option value="MP">Northern Mariana Islands</option>
-              <option value="NO">Norway</option>
-              <option value="OM">Oman</option>
-              <option value="PK">Pakistan</option>
-              <option value="PW">Palau</option>
-              <option value="PS">Palestinian Territory, Occupied</option>
-              <option value="PA">Panama</option>
-              <option value="PG">Papua New Guinea</option>
-              <option value="PY">Paraguay</option>
-              <option value="PE">Peru</option>
-              <option value="PH">Philippines</option>
-              <option value="PN">Pitcairn</option>
-              <option value="PL">Poland</option>
-              <option value="PT">Portugal</option>
-              <option value="PR">Puerto Rico</option>
-              <option value="QA">Qatar</option>
-              <option value="RE">Reunion</option>
-              <option value="RO">Romania</option>
-              <option value="RU">Russian Federation</option>
-              <option value="RW">Rwanda</option>
-              <option value="BL">Saint Barthelemy</option>
-              <option value="SH">Saint Helena</option>
-              <option value="KN">Saint Kitts and Nevis</option>
-              <option value="LC">Saint Lucia</option>
-              <option value="MF">Saint Martin</option>
-              <option value="PM">Saint Pierre and Miquelon</option>
-              <option value="VC">Saint Vincent and the Grenadines</option>
-              <option value="WS">Samoa</option>
-              <option value="SM">San Marino</option>
-              <option value="ST">Sao Tome and Principe</option>
-              <option value="SA">Saudi Arabia</option>
-              <option value="SN">Senegal</option>
-              <option value="RS">Serbia</option>
-              <option value="CS">Serbia and Montenegro</option>
-              <option value="SC">Seychelles</option>
-              <option value="SL">Sierra Leone</option>
-              <option value="SG">Singapore</option>
-              <option value="SX">Sint Maarten</option>
-              <option value="SK">Slovakia</option>
-              <option value="SI">Slovenia</option>
-              <option value="SB">Solomon Islands</option>
-              <option value="SO">Somalia</option>
-              <option value="ZA">South Africa</option>
-              <option value="GS">
-                South Georgia and the South Sandwich Islands
-              </option>
-              <option value="SS">South Sudan</option>
-              <option value="ES">Spain</option>
-              <option value="LK">Sri Lanka</option>
-              <option value="SD">Sudan</option>
-              <option value="SR">Suriname</option>
-              <option value="SJ">Svalbard and Jan Mayen</option>
-              <option value="SZ">Swaziland</option>
-              <option value="SE">Sweden</option>
-              <option value="CH">Switzerland</option>
-              <option value="SY">Syrian Arab Republic</option>
-              <option value="TW">Taiwan, Province of China</option>
-              <option value="TJ">Tajikistan</option>
-              <option value="TZ">Tanzania, United Republic of</option>
-              <option value="TH">Thailand</option>
-              <option value="TL">Timor-Leste</option>
-              <option value="TG">Togo</option>
-              <option value="TK">Tokelau</option>
-              <option value="TO">Tonga</option>
-              <option value="TT">Trinidad and Tobago</option>
-              <option value="TN">Tunisia</option>
-              <option value="TR">Turkey</option>
-              <option value="TM">Turkmenistan</option>
-              <option value="TC">Turks and Caicos Islands</option>
-              <option value="TV">Tuvalu</option>
-              <option value="UG">Uganda</option>
-              <option value="UA">Ukraine</option>
-              <option value="AE">United Arab Emirates</option>
-              <option value="GB">United Kingdom</option>
-              <option value="US">United States</option>
-              <option value="UM">United States Minor Outlying Islands</option>
-              <option value="UY">Uruguay</option>
-              <option value="UZ">Uzbekistan</option>
-              <option value="VU">Vanuatu</option>
-              <option value="VE">Venezuela</option>
-              <option value="VN">Viet Nam</option>
-              <option value="VG">Virgin Islands, British</option>
-              <option value="VI">Virgin Islands, U.s.</option>
-              <option value="WF">Wallis and Futuna</option>
-              <option value="EH">Western Sahara</option>
-              <option value="YE">Yemen</option>
-              <option value="ZM">Zambia</option>
-              <option value="ZW">Zimbabwe</option>
-            </NativeSelect>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              City
-            </Typography>
-            <TextField
-              fullWidth
-              variant="standard"
-              label="Travel document Number"
-              required
-            >
-              Please choose the city where your travel document was issued.
-            </TextField>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              State / Region / Province
-            </Typography>
-            <TextField
-              fullWidth
-              variant="standard"
-              label="Travel document Number"
-              required
-            >
-              Please choose the city where your travel document was issued.
-            </TextField>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Country / Region
-            </Typography>
-            <NativeSelect defaultValue="regular" fullWidth>
-              <option>Select country</option>
-              <option value="AF">Afghanistan</option>
-              <option value="AX">Aland Islands</option>
-              <option value="AL">Albania</option>
-              <option value="DZ">Algeria</option>
-              <option value="AS">American Samoa</option>
-              <option value="AD">Andorra</option>
-              <option value="AO">Angola</option>
-              <option value="AI">Anguilla</option>
-              <option value="AQ">Antarctica</option>
-              <option value="AG">Antigua and Barbuda</option>
-              <option value="AR">Argentina</option>
-              <option value="AM">Armenia</option>
-              <option value="AW">Aruba</option>
-              <option value="AU">Australia</option>
-              <option value="AT">Austria</option>
-              <option value="AZ">Azerbaijan</option>
-              <option value="BS">Bahamas</option>
-              <option value="BH">Bahrain</option>
-              <option value="BD">Bangladesh</option>
-              <option value="BB">Barbados</option>
-              <option value="BY">Belarus</option>
-              <option value="BE">Belgium</option>
-              <option value="BZ">Belize</option>
-              <option value="BJ">Benin</option>
-              <option value="BM">Bermuda</option>
-              <option value="BT">Bhutan</option>
-              <option value="BO">Bolivia</option>
-              <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-              <option value="BA">Bosnia and Herzegovina</option>
-              <option value="BW">Botswana</option>
-              <option value="BV">Bouvet Island</option>
-              <option value="BR">Brazil</option>
-              <option value="IO">British Indian Ocean Territory</option>
-              <option value="BN">Brunei Darussalam</option>
-              <option value="BG">Bulgaria</option>
-              <option value="BF">Burkina Faso</option>
-              <option value="BI">Burundi</option>
-              <option value="KH">Cambodia</option>
-              <option value="CM">Cameroon</option>
-              <option value="CA">Canada</option>
-              <option value="CV">Cape Verde</option>
-              <option value="KY">Cayman Islands</option>
-              <option value="CF">Central African Republic</option>
-              <option value="TD">Chad</option>
-              <option value="CL">Chile</option>
-              <option value="CN">China</option>
-              <option value="CX">Christmas Island</option>
-              <option value="CC">Cocos (Keeling) Islands</option>
-              <option value="CO">Colombia</option>
-              <option value="KM">Comoros</option>
-              <option value="CG">Congo</option>
-              <option value="CD">
-                Congo, Democratic Republic of the Congo
-              </option>
-              <option value="CK">Cook Islands</option>
-              <option value="CR">Costa Rica</option>
-              <option value="CI">Cote D'Ivoire</option>
-              <option value="HR">Croatia</option>
-              <option value="CU">Cuba</option>
-              <option value="CW">Curacao</option>
-              <option value="CY">Cyprus</option>
-              <option value="CZ">Czech Republic</option>
-              <option value="DK">Denmark</option>
-              <option value="DJ">Djibouti</option>
-              <option value="DM">Dominica</option>
-              <option value="DO">Dominican Republic</option>
-              <option value="EC">Ecuador</option>
-              <option value="EG">Egypt</option>
-              <option value="SV">El Salvador</option>
-              <option value="GQ">Equatorial Guinea</option>
-              <option value="ER">Eritrea</option>
-              <option value="EE">Estonia</option>
-              <option value="ET">Ethiopia</option>
-              <option value="FK">Falkland Islands (Malvinas)</option>
-              <option value="FO">Faroe Islands</option>
-              <option value="FJ">Fiji</option>
-              <option value="FI">Finland</option>
-              <option value="FR">France</option>
-              <option value="GF">French Guiana</option>
-              <option value="PF">French Polynesia</option>
-              <option value="TF">French Southern Territories</option>
-              <option value="GA">Gabon</option>
-              <option value="GM">Gambia</option>
-              <option value="GE">Georgia</option>
-              <option value="DE">Germany</option>
-              <option value="GH">Ghana</option>
-              <option value="GI">Gibraltar</option>
-              <option value="GR">Greece</option>
-              <option value="GL">Greenland</option>
-              <option value="GD">Grenada</option>
-              <option value="GP">Guadeloupe</option>
-              <option value="GU">Guam</option>
-              <option value="GT">Guatemala</option>
-              <option value="GG">Guernsey</option>
-              <option value="GN">Guinea</option>
-              <option value="GW">Guinea-Bissau</option>
-              <option value="GY">Guyana</option>
-              <option value="HT">Haiti</option>
-              <option value="HM">Heard Island and Mcdonald Islands</option>
-              <option value="VA">Holy See (Vatican City State)</option>
-              <option value="HN">Honduras</option>
-              <option value="HK">Hong Kong</option>
-              <option value="HU">Hungary</option>
-              <option value="IS">Iceland</option>
-              <option value="IN">India</option>
-              <option value="ID">Indonesia</option>
-              <option value="IR">Iran, Islamic Republic of</option>
-              <option value="IQ">Iraq</option>
-              <option value="IE">Ireland</option>
-              <option value="IM">Isle of Man</option>
-              <option value="IL">Israel</option>
-              <option value="IT">Italy</option>
-              <option value="JM">Jamaica</option>
-              <option value="JP">Japan</option>
-              <option value="JE">Jersey</option>
-              <option value="JO">Jordan</option>
-              <option value="KZ">Kazakhstan</option>
-              <option value="KE">Kenya</option>
-              <option value="KI">Kiribati</option>
-              <option value="KP">Korea, Democratic People's Republic of</option>
-              <option value="KR">Korea, Republic of</option>
-              <option value="XK">Kosovo</option>
-              <option value="KW">Kuwait</option>
-              <option value="KG">Kyrgyzstan</option>
-              <option value="LA">Lao People's Democratic Republic</option>
-              <option value="LV">Latvia</option>
-              <option value="LB">Lebanon</option>
-              <option value="LS">Lesotho</option>
-              <option value="LR">Liberia</option>
-              <option value="LY">Libyan Arab Jamahiriya</option>
-              <option value="LI">Liechtenstein</option>
-              <option value="LT">Lithuania</option>
-              <option value="LU">Luxembourg</option>
-              <option value="MO">Macao</option>
-              <option value="MK">
-                Macedonia, the Former Yugoslav Republic of
-              </option>
-              <option value="MG">Madagascar</option>
-              <option value="MW">Malawi</option>
-              <option value="MY">Malaysia</option>
-              <option value="MV">Maldives</option>
-              <option value="ML">Mali</option>
-              <option value="MT">Malta</option>
-              <option value="MH">Marshall Islands</option>
-              <option value="MQ">Martinique</option>
-              <option value="MR">Mauritania</option>
-              <option value="MU">Mauritius</option>
-              <option value="YT">Mayotte</option>
-              <option value="MX">Mexico</option>
-              <option value="FM">Micronesia, Federated States of</option>
-              <option value="MD">Moldova, Republic of</option>
-              <option value="MC">Monaco</option>
-              <option value="MN">Mongolia</option>
-              <option value="ME">Montenegro</option>
-              <option value="MS">Montserrat</option>
-              <option value="MA">Morocco</option>
-              <option value="MZ">Mozambique</option>
-              <option value="MM">Myanmar</option>
-              <option value="NA">Namibia</option>
-              <option value="NR">Nauru</option>
-              <option value="NP">Nepal</option>
-              <option value="NL">Netherlands</option>
-              <option value="AN">Netherlands Antilles</option>
-              <option value="NC">New Caledonia</option>
-              <option value="NZ">New Zealand</option>
-              <option value="NI">Nicaragua</option>
-              <option value="NE">Niger</option>
-              <option value="NG">Nigeria</option>
-              <option value="NU">Niue</option>
-              <option value="NF">Norfolk Island</option>
-              <option value="MP">Northern Mariana Islands</option>
-              <option value="NO">Norway</option>
-              <option value="OM">Oman</option>
-              <option value="PK">Pakistan</option>
-              <option value="PW">Palau</option>
-              <option value="PS">Palestinian Territory, Occupied</option>
-              <option value="PA">Panama</option>
-              <option value="PG">Papua New Guinea</option>
-              <option value="PY">Paraguay</option>
-              <option value="PE">Peru</option>
-              <option value="PH">Philippines</option>
-              <option value="PN">Pitcairn</option>
-              <option value="PL">Poland</option>
-              <option value="PT">Portugal</option>
-              <option value="PR">Puerto Rico</option>
-              <option value="QA">Qatar</option>
-              <option value="RE">Reunion</option>
-              <option value="RO">Romania</option>
-              <option value="RU">Russian Federation</option>
-              <option value="RW">Rwanda</option>
-              <option value="BL">Saint Barthelemy</option>
-              <option value="SH">Saint Helena</option>
-              <option value="KN">Saint Kitts and Nevis</option>
-              <option value="LC">Saint Lucia</option>
-              <option value="MF">Saint Martin</option>
-              <option value="PM">Saint Pierre and Miquelon</option>
-              <option value="VC">Saint Vincent and the Grenadines</option>
-              <option value="WS">Samoa</option>
-              <option value="SM">San Marino</option>
-              <option value="ST">Sao Tome and Principe</option>
-              <option value="SA">Saudi Arabia</option>
-              <option value="SN">Senegal</option>
-              <option value="RS">Serbia</option>
-              <option value="CS">Serbia and Montenegro</option>
-              <option value="SC">Seychelles</option>
-              <option value="SL">Sierra Leone</option>
-              <option value="SG">Singapore</option>
-              <option value="SX">Sint Maarten</option>
-              <option value="SK">Slovakia</option>
-              <option value="SI">Slovenia</option>
-              <option value="SB">Solomon Islands</option>
-              <option value="SO">Somalia</option>
-              <option value="ZA">South Africa</option>
-              <option value="GS">
-                South Georgia and the South Sandwich Islands
-              </option>
-              <option value="SS">South Sudan</option>
-              <option value="ES">Spain</option>
-              <option value="LK">Sri Lanka</option>
-              <option value="SD">Sudan</option>
-              <option value="SR">Suriname</option>
-              <option value="SJ">Svalbard and Jan Mayen</option>
-              <option value="SZ">Swaziland</option>
-              <option value="SE">Sweden</option>
-              <option value="CH">Switzerland</option>
-              <option value="SY">Syrian Arab Republic</option>
-              <option value="TW">Taiwan, Province of China</option>
-              <option value="TJ">Tajikistan</option>
-              <option value="TZ">Tanzania, United Republic of</option>
-              <option value="TH">Thailand</option>
-              <option value="TL">Timor-Leste</option>
-              <option value="TG">Togo</option>
-              <option value="TK">Tokelau</option>
-              <option value="TO">Tonga</option>
-              <option value="TT">Trinidad and Tobago</option>
-              <option value="TN">Tunisia</option>
-              <option value="TR">Turkey</option>
-              <option value="TM">Turkmenistan</option>
-              <option value="TC">Turks and Caicos Islands</option>
-              <option value="TV">Tuvalu</option>
-              <option value="UG">Uganda</option>
-              <option value="UA">Ukraine</option>
-              <option value="AE">United Arab Emirates</option>
-              <option value="GB">United Kingdom</option>
-              <option value="US">United States</option>
-              <option value="UM">United States Minor Outlying Islands</option>
-              <option value="UY">Uruguay</option>
-              <option value="UZ">Uzbekistan</option>
-              <option value="VU">Vanuatu</option>
-              <option value="VE">Venezuela</option>
-              <option value="VN">Viet Nam</option>
-              <option value="VG">Virgin Islands, British</option>
-              <option value="VI">Virgin Islands, U.s.</option>
-              <option value="WF">Wallis and Futuna</option>
-              <option value="EH">Western Sahara</option>
-              <option value="YE">Yemen</option>
-              <option value="ZM">Zambia</option>
-              <option value="ZW">Zimbabwe</option>
-            </NativeSelect>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Passport expiration date
-            </Typography>
-            <TextField
-              id="date"
-              label="Passport expiration date"
-              variant="standard"
-              type="date"
-              defaultValue="1992-01-01"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={object({
+          passportTravelDocumentType: string().required(
+            "Please select a passport / travel document type"
+          ),
+          passportTravelDocumentNumber: string()
+            .required("Please provide passport / travel document number")
+            .min(
+              8,
+              "Please recheck your passport information. Passport numbers are 8 to 10 characters long"
+            )
+            .max(
+              10,
+              "Please recheck your passport information. Passport numbers must be at most 10 characters"
+            ),
+          passportBookNumber: mixed().when("passportBookNumberDisabled", {
+            is: "true",
+            then: string(),
+            otherwise: string().required(
+              "Please select a Passport Book Number if applicable, or tick does not apply"
+            ),
+          }),
+          passportBookNumberDisabled: string(),
+          countryAuthority: string().required(
+            "Please select country / authority"
+          ),
+          city: string().required(
+            "Please choose the city where your travel document was issued."
+          ),
+          stateRegionProvince: string().min(
+            1,
+            "Minimum number of characters are 2."
+          ),
+          countryRegion: string().required(
+            "Please select choose the country / region where your travel document was issued."
+          ),
+          passportIssuanceDate: date().required("Date must be in the past"),
+          passportExpirationDate: mixed().when(
+            "passportExpirationDateDisabled",
+            {
+              is: "true",
+              then: string(),
+              otherwise: string().required("Date must be in the future!"),
+            }
+          ),
+          lostPassport: string().required(
+            "Please select an answer to the question: have you ever lost a passport or had one stolen?"
+          ),
+          lostPassportDocumentNumber: mixed().when("lostPassport", {
+            is: "true",
+            then: string().required("Please provide passport number."),
+            otherwise: string(),
+          }),
+          lostPassportCountryAuthorityIssued: mixed().when("lostPassport", {
+            is: "true",
+            then: string().required(
+              "Please select country / authority that issued the passport / travel document."
+            ),
+            otherwise: string(),
+          }),
+          lostPassportExplain: mixed().when("lostPassport", {
+            is: "true",
+            then: string().required("This field is required."),
+            otherwise: string(),
+          }),
+          countryRegionOrigin: string().required(
+            "Please select the country of citizenship as displayed on your passport or travel document"
+          ),
+          otherNationalityCountryRegion: mixed().when("otherNationality", {
+            is: "true",
+            then: string().required(
+              "The Other Country/Region cannot be same as origin nationality."
+            ),
+            otherwise: string(),
+          }),
+          otherNationalityCountryRegionTravelDocumentNumber: mixed().when(
+            "otherNationalityCountryRegion",
+            {
+              is: "true",
+              then: string().required(
+                "Enter the passport number exactly as it appears on the passport information page."
+              ),
+              otherwise: string(),
+            }
+          ),
+          otherNationalityPassport: mixed().when("otherNationalityCountry", {
+            is: "true",
+            then: string().required(
+              "Please select what is your Other Permanent Country/Region?."
+            ),
+            otherwise: string(),
+          }),
+          nationalIdentificationNumber: mixed().when(
+            "nationalIdentificationNumberDisabled",
+            {
+              is: "true",
+              then: string(),
+              otherwise: string().required(
+                "Please fill in your National Identification Number"
+              ),
+            }
+          ),
+          usSocialSecurityAreaNumber: mixed().when(
+            "usSocialSecurityAreaNumberDisabled",
+            {
+              is: "true",
+              then: string(),
+              otherwise: string().required(
+                "Please fill in your National Identification Number"
+              ),
+            }
+          ),
+          usSocialSecurityGroup: mixed().when("usSocialSecurityGroupDisabled", {
+            is: "true",
+            then: string(),
+            otherwise: string().required(
+              "Please fill in your National Identification Number"
+            ),
+          }),
+          usSocialSecuritySerialNumber: mixed().when(
+            "usSocialSecuritySerialNumberDisabled",
+            {
+              is: "true",
+              then: string(),
+              otherwise: string().required(
+                "Please fill in your National Identification Number"
+              ),
+            }
+          ),
+          usSocialTaxpayerNumber: mixed().when(
+            "usSocialTaxpayerNumberDisable",
+            {
+              is: "true",
+              then: string(),
+              otherwise: string().required(
+                "Please fill in your National Identification Number"
+              ),
+            }
+          ),
+        })}
+        onSubmit={(values, formikHelpers) => {
+          console.log(values);
+          console.log(formikHelpers);
+        }}
+      >
+        {({ values, errors, touched }) => (
+          <Form>
+            {/* <Field name="passportTravelDocumentType"></Field> */}
+            <pre>{JSON.stringify(values, null, 4)}</pre>
+            <pre>{JSON.stringify(errors, null, 4)}</pre>
+            <Container
+              component="main"
+              maxWidth="false"
+              sx={{
+                p: { xs: 0, sm: 2 },
               }}
-            />
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Have you ever lost a passport or had one stolen?
-            </Typography>
-            <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="noo" control={<Radio />} label="No" />
-            </RadioGroup>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Country / Region of origin ( Nationality )
-            </Typography>
-            <NativeSelect defaultValue="regular" fullWidth>
-              <option>Select country</option>
-              <option value="AF">Afghanistan</option>
-              <option value="AX">Aland Islands</option>
-              <option value="AL">Albania</option>
-              <option value="DZ">Algeria</option>
-              <option value="AS">American Samoa</option>
-              <option value="AD">Andorra</option>
-              <option value="AO">Angola</option>
-              <option value="AI">Anguilla</option>
-              <option value="AQ">Antarctica</option>
-              <option value="AG">Antigua and Barbuda</option>
-              <option value="AR">Argentina</option>
-              <option value="AM">Armenia</option>
-              <option value="AW">Aruba</option>
-              <option value="AU">Australia</option>
-              <option value="AT">Austria</option>
-              <option value="AZ">Azerbaijan</option>
-              <option value="BS">Bahamas</option>
-              <option value="BH">Bahrain</option>
-              <option value="BD">Bangladesh</option>
-              <option value="BB">Barbados</option>
-              <option value="BY">Belarus</option>
-              <option value="BE">Belgium</option>
-              <option value="BZ">Belize</option>
-              <option value="BJ">Benin</option>
-              <option value="BM">Bermuda</option>
-              <option value="BT">Bhutan</option>
-              <option value="BO">Bolivia</option>
-              <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-              <option value="BA">Bosnia and Herzegovina</option>
-              <option value="BW">Botswana</option>
-              <option value="BV">Bouvet Island</option>
-              <option value="BR">Brazil</option>
-              <option value="IO">British Indian Ocean Territory</option>
-              <option value="BN">Brunei Darussalam</option>
-              <option value="BG">Bulgaria</option>
-              <option value="BF">Burkina Faso</option>
-              <option value="BI">Burundi</option>
-              <option value="KH">Cambodia</option>
-              <option value="CM">Cameroon</option>
-              <option value="CA">Canada</option>
-              <option value="CV">Cape Verde</option>
-              <option value="KY">Cayman Islands</option>
-              <option value="CF">Central African Republic</option>
-              <option value="TD">Chad</option>
-              <option value="CL">Chile</option>
-              <option value="CN">China</option>
-              <option value="CX">Christmas Island</option>
-              <option value="CC">Cocos (Keeling) Islands</option>
-              <option value="CO">Colombia</option>
-              <option value="KM">Comoros</option>
-              <option value="CG">Congo</option>
-              <option value="CD">
-                Congo, Democratic Republic of the Congo
-              </option>
-              <option value="CK">Cook Islands</option>
-              <option value="CR">Costa Rica</option>
-              <option value="CI">Cote D'Ivoire</option>
-              <option value="HR">Croatia</option>
-              <option value="CU">Cuba</option>
-              <option value="CW">Curacao</option>
-              <option value="CY">Cyprus</option>
-              <option value="CZ">Czech Republic</option>
-              <option value="DK">Denmark</option>
-              <option value="DJ">Djibouti</option>
-              <option value="DM">Dominica</option>
-              <option value="DO">Dominican Republic</option>
-              <option value="EC">Ecuador</option>
-              <option value="EG">Egypt</option>
-              <option value="SV">El Salvador</option>
-              <option value="GQ">Equatorial Guinea</option>
-              <option value="ER">Eritrea</option>
-              <option value="EE">Estonia</option>
-              <option value="ET">Ethiopia</option>
-              <option value="FK">Falkland Islands (Malvinas)</option>
-              <option value="FO">Faroe Islands</option>
-              <option value="FJ">Fiji</option>
-              <option value="FI">Finland</option>
-              <option value="FR">France</option>
-              <option value="GF">French Guiana</option>
-              <option value="PF">French Polynesia</option>
-              <option value="TF">French Southern Territories</option>
-              <option value="GA">Gabon</option>
-              <option value="GM">Gambia</option>
-              <option value="GE">Georgia</option>
-              <option value="DE">Germany</option>
-              <option value="GH">Ghana</option>
-              <option value="GI">Gibraltar</option>
-              <option value="GR">Greece</option>
-              <option value="GL">Greenland</option>
-              <option value="GD">Grenada</option>
-              <option value="GP">Guadeloupe</option>
-              <option value="GU">Guam</option>
-              <option value="GT">Guatemala</option>
-              <option value="GG">Guernsey</option>
-              <option value="GN">Guinea</option>
-              <option value="GW">Guinea-Bissau</option>
-              <option value="GY">Guyana</option>
-              <option value="HT">Haiti</option>
-              <option value="HM">Heard Island and Mcdonald Islands</option>
-              <option value="VA">Holy See (Vatican City State)</option>
-              <option value="HN">Honduras</option>
-              <option value="HK">Hong Kong</option>
-              <option value="HU">Hungary</option>
-              <option value="IS">Iceland</option>
-              <option value="IN">India</option>
-              <option value="ID">Indonesia</option>
-              <option value="IR">Iran, Islamic Republic of</option>
-              <option value="IQ">Iraq</option>
-              <option value="IE">Ireland</option>
-              <option value="IM">Isle of Man</option>
-              <option value="IL">Israel</option>
-              <option value="IT">Italy</option>
-              <option value="JM">Jamaica</option>
-              <option value="JP">Japan</option>
-              <option value="JE">Jersey</option>
-              <option value="JO">Jordan</option>
-              <option value="KZ">Kazakhstan</option>
-              <option value="KE">Kenya</option>
-              <option value="KI">Kiribati</option>
-              <option value="KP">Korea, Democratic People's Republic of</option>
-              <option value="KR">Korea, Republic of</option>
-              <option value="XK">Kosovo</option>
-              <option value="KW">Kuwait</option>
-              <option value="KG">Kyrgyzstan</option>
-              <option value="LA">Lao People's Democratic Republic</option>
-              <option value="LV">Latvia</option>
-              <option value="LB">Lebanon</option>
-              <option value="LS">Lesotho</option>
-              <option value="LR">Liberia</option>
-              <option value="LY">Libyan Arab Jamahiriya</option>
-              <option value="LI">Liechtenstein</option>
-              <option value="LT">Lithuania</option>
-              <option value="LU">Luxembourg</option>
-              <option value="MO">Macao</option>
-              <option value="MK">
-                Macedonia, the Former Yugoslav Republic of
-              </option>
-              <option value="MG">Madagascar</option>
-              <option value="MW">Malawi</option>
-              <option value="MY">Malaysia</option>
-              <option value="MV">Maldives</option>
-              <option value="ML">Mali</option>
-              <option value="MT">Malta</option>
-              <option value="MH">Marshall Islands</option>
-              <option value="MQ">Martinique</option>
-              <option value="MR">Mauritania</option>
-              <option value="MU">Mauritius</option>
-              <option value="YT">Mayotte</option>
-              <option value="MX">Mexico</option>
-              <option value="FM">Micronesia, Federated States of</option>
-              <option value="MD">Moldova, Republic of</option>
-              <option value="MC">Monaco</option>
-              <option value="MN">Mongolia</option>
-              <option value="ME">Montenegro</option>
-              <option value="MS">Montserrat</option>
-              <option value="MA">Morocco</option>
-              <option value="MZ">Mozambique</option>
-              <option value="MM">Myanmar</option>
-              <option value="NA">Namibia</option>
-              <option value="NR">Nauru</option>
-              <option value="NP">Nepal</option>
-              <option value="NL">Netherlands</option>
-              <option value="AN">Netherlands Antilles</option>
-              <option value="NC">New Caledonia</option>
-              <option value="NZ">New Zealand</option>
-              <option value="NI">Nicaragua</option>
-              <option value="NE">Niger</option>
-              <option value="NG">Nigeria</option>
-              <option value="NU">Niue</option>
-              <option value="NF">Norfolk Island</option>
-              <option value="MP">Northern Mariana Islands</option>
-              <option value="NO">Norway</option>
-              <option value="OM">Oman</option>
-              <option value="PK">Pakistan</option>
-              <option value="PW">Palau</option>
-              <option value="PS">Palestinian Territory, Occupied</option>
-              <option value="PA">Panama</option>
-              <option value="PG">Papua New Guinea</option>
-              <option value="PY">Paraguay</option>
-              <option value="PE">Peru</option>
-              <option value="PH">Philippines</option>
-              <option value="PN">Pitcairn</option>
-              <option value="PL">Poland</option>
-              <option value="PT">Portugal</option>
-              <option value="PR">Puerto Rico</option>
-              <option value="QA">Qatar</option>
-              <option value="RE">Reunion</option>
-              <option value="RO">Romania</option>
-              <option value="RU">Russian Federation</option>
-              <option value="RW">Rwanda</option>
-              <option value="BL">Saint Barthelemy</option>
-              <option value="SH">Saint Helena</option>
-              <option value="KN">Saint Kitts and Nevis</option>
-              <option value="LC">Saint Lucia</option>
-              <option value="MF">Saint Martin</option>
-              <option value="PM">Saint Pierre and Miquelon</option>
-              <option value="VC">Saint Vincent and the Grenadines</option>
-              <option value="WS">Samoa</option>
-              <option value="SM">San Marino</option>
-              <option value="ST">Sao Tome and Principe</option>
-              <option value="SA">Saudi Arabia</option>
-              <option value="SN">Senegal</option>
-              <option value="RS">Serbia</option>
-              <option value="CS">Serbia and Montenegro</option>
-              <option value="SC">Seychelles</option>
-              <option value="SL">Sierra Leone</option>
-              <option value="SG">Singapore</option>
-              <option value="SX">Sint Maarten</option>
-              <option value="SK">Slovakia</option>
-              <option value="SI">Slovenia</option>
-              <option value="SB">Solomon Islands</option>
-              <option value="SO">Somalia</option>
-              <option value="ZA">South Africa</option>
-              <option value="GS">
-                South Georgia and the South Sandwich Islands
-              </option>
-              <option value="SS">South Sudan</option>
-              <option value="ES">Spain</option>
-              <option value="LK">Sri Lanka</option>
-              <option value="SD">Sudan</option>
-              <option value="SR">Suriname</option>
-              <option value="SJ">Svalbard and Jan Mayen</option>
-              <option value="SZ">Swaziland</option>
-              <option value="SE">Sweden</option>
-              <option value="CH">Switzerland</option>
-              <option value="SY">Syrian Arab Republic</option>
-              <option value="TW">Taiwan, Province of China</option>
-              <option value="TJ">Tajikistan</option>
-              <option value="TZ">Tanzania, United Republic of</option>
-              <option value="TH">Thailand</option>
-              <option value="TL">Timor-Leste</option>
-              <option value="TG">Togo</option>
-              <option value="TK">Tokelau</option>
-              <option value="TO">Tonga</option>
-              <option value="TT">Trinidad and Tobago</option>
-              <option value="TN">Tunisia</option>
-              <option value="TR">Turkey</option>
-              <option value="TM">Turkmenistan</option>
-              <option value="TC">Turks and Caicos Islands</option>
-              <option value="TV">Tuvalu</option>
-              <option value="UG">Uganda</option>
-              <option value="UA">Ukraine</option>
-              <option value="AE">United Arab Emirates</option>
-              <option value="GB">United Kingdom</option>
-              <option value="US">United States</option>
-              <option value="UM">United States Minor Outlying Islands</option>
-              <option value="UY">Uruguay</option>
-              <option value="UZ">Uzbekistan</option>
-              <option value="VU">Vanuatu</option>
-              <option value="VE">Venezuela</option>
-              <option value="VN">Viet Nam</option>
-              <option value="VG">Virgin Islands, British</option>
-              <option value="VI">Virgin Islands, U.s.</option>
-              <option value="WF">Wallis and Futuna</option>
-              <option value="EH">Western Sahara</option>
-              <option value="YE">Yemen</option>
-              <option value="ZM">Zambia</option>
-              <option value="ZW">Zimbabwe</option>
-            </NativeSelect>
-          </Stack>
-        </Grid>
-      </Grid>
-      <Typography variant="h4" paddingTop={10}>
-        Additional Nationalities
-      </Typography>
-      <Divider sx={{ pt: 4, mb: 4, borderColor: "#1976d2" }} />
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Do you hold or have you held any nationality other that the one
-              indicated above on nationality?
-            </Typography>
-            <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="noo" control={<Radio />} label="No" />
-            </RadioGroup>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Other country / region of origin ( Nationality )
-            </Typography>
-            <NativeSelect defaultValue="regular" fullWidth>
-              <option>Select country</option>
-              <option value="AF">Afghanistan</option>
-              <option value="AX">Aland Islands</option>
-              <option value="AL">Albania</option>
-              <option value="DZ">Algeria</option>
-              <option value="AS">American Samoa</option>
-              <option value="AD">Andorra</option>
-              <option value="AO">Angola</option>
-              <option value="AI">Anguilla</option>
-              <option value="AQ">Antarctica</option>
-              <option value="AG">Antigua and Barbuda</option>
-              <option value="AR">Argentina</option>
-              <option value="AM">Armenia</option>
-              <option value="AW">Aruba</option>
-              <option value="AU">Australia</option>
-              <option value="AT">Austria</option>
-              <option value="AZ">Azerbaijan</option>
-              <option value="BS">Bahamas</option>
-              <option value="BH">Bahrain</option>
-              <option value="BD">Bangladesh</option>
-              <option value="BB">Barbados</option>
-              <option value="BY">Belarus</option>
-              <option value="BE">Belgium</option>
-              <option value="BZ">Belize</option>
-              <option value="BJ">Benin</option>
-              <option value="BM">Bermuda</option>
-              <option value="BT">Bhutan</option>
-              <option value="BO">Bolivia</option>
-              <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-              <option value="BA">Bosnia and Herzegovina</option>
-              <option value="BW">Botswana</option>
-              <option value="BV">Bouvet Island</option>
-              <option value="BR">Brazil</option>
-              <option value="IO">British Indian Ocean Territory</option>
-              <option value="BN">Brunei Darussalam</option>
-              <option value="BG">Bulgaria</option>
-              <option value="BF">Burkina Faso</option>
-              <option value="BI">Burundi</option>
-              <option value="KH">Cambodia</option>
-              <option value="CM">Cameroon</option>
-              <option value="CA">Canada</option>
-              <option value="CV">Cape Verde</option>
-              <option value="KY">Cayman Islands</option>
-              <option value="CF">Central African Republic</option>
-              <option value="TD">Chad</option>
-              <option value="CL">Chile</option>
-              <option value="CN">China</option>
-              <option value="CX">Christmas Island</option>
-              <option value="CC">Cocos (Keeling) Islands</option>
-              <option value="CO">Colombia</option>
-              <option value="KM">Comoros</option>
-              <option value="CG">Congo</option>
-              <option value="CD">
-                Congo, Democratic Republic of the Congo
-              </option>
-              <option value="CK">Cook Islands</option>
-              <option value="CR">Costa Rica</option>
-              <option value="CI">Cote D'Ivoire</option>
-              <option value="HR">Croatia</option>
-              <option value="CU">Cuba</option>
-              <option value="CW">Curacao</option>
-              <option value="CY">Cyprus</option>
-              <option value="CZ">Czech Republic</option>
-              <option value="DK">Denmark</option>
-              <option value="DJ">Djibouti</option>
-              <option value="DM">Dominica</option>
-              <option value="DO">Dominican Republic</option>
-              <option value="EC">Ecuador</option>
-              <option value="EG">Egypt</option>
-              <option value="SV">El Salvador</option>
-              <option value="GQ">Equatorial Guinea</option>
-              <option value="ER">Eritrea</option>
-              <option value="EE">Estonia</option>
-              <option value="ET">Ethiopia</option>
-              <option value="FK">Falkland Islands (Malvinas)</option>
-              <option value="FO">Faroe Islands</option>
-              <option value="FJ">Fiji</option>
-              <option value="FI">Finland</option>
-              <option value="FR">France</option>
-              <option value="GF">French Guiana</option>
-              <option value="PF">French Polynesia</option>
-              <option value="TF">French Southern Territories</option>
-              <option value="GA">Gabon</option>
-              <option value="GM">Gambia</option>
-              <option value="GE">Georgia</option>
-              <option value="DE">Germany</option>
-              <option value="GH">Ghana</option>
-              <option value="GI">Gibraltar</option>
-              <option value="GR">Greece</option>
-              <option value="GL">Greenland</option>
-              <option value="GD">Grenada</option>
-              <option value="GP">Guadeloupe</option>
-              <option value="GU">Guam</option>
-              <option value="GT">Guatemala</option>
-              <option value="GG">Guernsey</option>
-              <option value="GN">Guinea</option>
-              <option value="GW">Guinea-Bissau</option>
-              <option value="GY">Guyana</option>
-              <option value="HT">Haiti</option>
-              <option value="HM">Heard Island and Mcdonald Islands</option>
-              <option value="VA">Holy See (Vatican City State)</option>
-              <option value="HN">Honduras</option>
-              <option value="HK">Hong Kong</option>
-              <option value="HU">Hungary</option>
-              <option value="IS">Iceland</option>
-              <option value="IN">India</option>
-              <option value="ID">Indonesia</option>
-              <option value="IR">Iran, Islamic Republic of</option>
-              <option value="IQ">Iraq</option>
-              <option value="IE">Ireland</option>
-              <option value="IM">Isle of Man</option>
-              <option value="IL">Israel</option>
-              <option value="IT">Italy</option>
-              <option value="JM">Jamaica</option>
-              <option value="JP">Japan</option>
-              <option value="JE">Jersey</option>
-              <option value="JO">Jordan</option>
-              <option value="KZ">Kazakhstan</option>
-              <option value="KE">Kenya</option>
-              <option value="KI">Kiribati</option>
-              <option value="KP">Korea, Democratic People's Republic of</option>
-              <option value="KR">Korea, Republic of</option>
-              <option value="XK">Kosovo</option>
-              <option value="KW">Kuwait</option>
-              <option value="KG">Kyrgyzstan</option>
-              <option value="LA">Lao People's Democratic Republic</option>
-              <option value="LV">Latvia</option>
-              <option value="LB">Lebanon</option>
-              <option value="LS">Lesotho</option>
-              <option value="LR">Liberia</option>
-              <option value="LY">Libyan Arab Jamahiriya</option>
-              <option value="LI">Liechtenstein</option>
-              <option value="LT">Lithuania</option>
-              <option value="LU">Luxembourg</option>
-              <option value="MO">Macao</option>
-              <option value="MK">
-                Macedonia, the Former Yugoslav Republic of
-              </option>
-              <option value="MG">Madagascar</option>
-              <option value="MW">Malawi</option>
-              <option value="MY">Malaysia</option>
-              <option value="MV">Maldives</option>
-              <option value="ML">Mali</option>
-              <option value="MT">Malta</option>
-              <option value="MH">Marshall Islands</option>
-              <option value="MQ">Martinique</option>
-              <option value="MR">Mauritania</option>
-              <option value="MU">Mauritius</option>
-              <option value="YT">Mayotte</option>
-              <option value="MX">Mexico</option>
-              <option value="FM">Micronesia, Federated States of</option>
-              <option value="MD">Moldova, Republic of</option>
-              <option value="MC">Monaco</option>
-              <option value="MN">Mongolia</option>
-              <option value="ME">Montenegro</option>
-              <option value="MS">Montserrat</option>
-              <option value="MA">Morocco</option>
-              <option value="MZ">Mozambique</option>
-              <option value="MM">Myanmar</option>
-              <option value="NA">Namibia</option>
-              <option value="NR">Nauru</option>
-              <option value="NP">Nepal</option>
-              <option value="NL">Netherlands</option>
-              <option value="AN">Netherlands Antilles</option>
-              <option value="NC">New Caledonia</option>
-              <option value="NZ">New Zealand</option>
-              <option value="NI">Nicaragua</option>
-              <option value="NE">Niger</option>
-              <option value="NG">Nigeria</option>
-              <option value="NU">Niue</option>
-              <option value="NF">Norfolk Island</option>
-              <option value="MP">Northern Mariana Islands</option>
-              <option value="NO">Norway</option>
-              <option value="OM">Oman</option>
-              <option value="PK">Pakistan</option>
-              <option value="PW">Palau</option>
-              <option value="PS">Palestinian Territory, Occupied</option>
-              <option value="PA">Panama</option>
-              <option value="PG">Papua New Guinea</option>
-              <option value="PY">Paraguay</option>
-              <option value="PE">Peru</option>
-              <option value="PH">Philippines</option>
-              <option value="PN">Pitcairn</option>
-              <option value="PL">Poland</option>
-              <option value="PT">Portugal</option>
-              <option value="PR">Puerto Rico</option>
-              <option value="QA">Qatar</option>
-              <option value="RE">Reunion</option>
-              <option value="RO">Romania</option>
-              <option value="RU">Russian Federation</option>
-              <option value="RW">Rwanda</option>
-              <option value="BL">Saint Barthelemy</option>
-              <option value="SH">Saint Helena</option>
-              <option value="KN">Saint Kitts and Nevis</option>
-              <option value="LC">Saint Lucia</option>
-              <option value="MF">Saint Martin</option>
-              <option value="PM">Saint Pierre and Miquelon</option>
-              <option value="VC">Saint Vincent and the Grenadines</option>
-              <option value="WS">Samoa</option>
-              <option value="SM">San Marino</option>
-              <option value="ST">Sao Tome and Principe</option>
-              <option value="SA">Saudi Arabia</option>
-              <option value="SN">Senegal</option>
-              <option value="RS">Serbia</option>
-              <option value="CS">Serbia and Montenegro</option>
-              <option value="SC">Seychelles</option>
-              <option value="SL">Sierra Leone</option>
-              <option value="SG">Singapore</option>
-              <option value="SX">Sint Maarten</option>
-              <option value="SK">Slovakia</option>
-              <option value="SI">Slovenia</option>
-              <option value="SB">Solomon Islands</option>
-              <option value="SO">Somalia</option>
-              <option value="ZA">South Africa</option>
-              <option value="GS">
-                South Georgia and the South Sandwich Islands
-              </option>
-              <option value="SS">South Sudan</option>
-              <option value="ES">Spain</option>
-              <option value="LK">Sri Lanka</option>
-              <option value="SD">Sudan</option>
-              <option value="SR">Suriname</option>
-              <option value="SJ">Svalbard and Jan Mayen</option>
-              <option value="SZ">Swaziland</option>
-              <option value="SE">Sweden</option>
-              <option value="CH">Switzerland</option>
-              <option value="SY">Syrian Arab Republic</option>
-              <option value="TW">Taiwan, Province of China</option>
-              <option value="TJ">Tajikistan</option>
-              <option value="TZ">Tanzania, United Republic of</option>
-              <option value="TH">Thailand</option>
-              <option value="TL">Timor-Leste</option>
-              <option value="TG">Togo</option>
-              <option value="TK">Tokelau</option>
-              <option value="TO">Tonga</option>
-              <option value="TT">Trinidad and Tobago</option>
-              <option value="TN">Tunisia</option>
-              <option value="TR">Turkey</option>
-              <option value="TM">Turkmenistan</option>
-              <option value="TC">Turks and Caicos Islands</option>
-              <option value="TV">Tuvalu</option>
-              <option value="UG">Uganda</option>
-              <option value="UA">Ukraine</option>
-              <option value="AE">United Arab Emirates</option>
-              <option value="GB">United Kingdom</option>
-              <option value="US">United States</option>
-              <option value="UM">United States Minor Outlying Islands</option>
-              <option value="UY">Uruguay</option>
-              <option value="UZ">Uzbekistan</option>
-              <option value="VU">Vanuatu</option>
-              <option value="VE">Venezuela</option>
-              <option value="VN">Viet Nam</option>
-              <option value="VG">Virgin Islands, British</option>
-              <option value="VI">Virgin Islands, U.s.</option>
-              <option value="WF">Wallis and Futuna</option>
-              <option value="EH">Western Sahara</option>
-              <option value="YE">Yemen</option>
-              <option value="ZM">Zambia</option>
-              <option value="ZW">Zimbabwe</option>
-            </NativeSelect>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Do you hold a passport for the other country / region of origin (
-              nationality) above?
-            </Typography>
-            <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="noo" control={<Radio />} label="No" />
-            </RadioGroup>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              Are you a permanent resident of a country / region other than your
-              country / region of origin ((nationality) indicated above ?)
-            </Typography>
-            <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="noo" control={<Radio />} label="No" />
-            </RadioGroup>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              National identification number
-            </Typography>
-            <TextField
-              variant="standard"
-              label="National identification number"
-              fullWidth
-              required
             >
-              National identification number
-            </TextField>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
-              label="Does not apply"
-              sx={{ minWidth: { xs: 40, md: 150 } }}
-            />
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              U.S. social security area number
-            </Typography>
-            <TextField
-              variant="standard"
-              label="U.S. social security area number"
-              fullWidth
-              required
-            >
-              U.S. social security area number
-            </TextField>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
-              label="Does not apply"
-              sx={{ minWidth: { xs: 40, md: 150 } }}
-            />
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              U.S. social security serial number
-            </Typography>
-            <TextField
-              variant="standard"
-              label="U.S. social security serial number"
-              fullWidth
-              required
-            >
-              U.S. social security serial number
-            </TextField>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
-              label="Does not apply"
-              sx={{ minWidth: { xs: 40, md: 150 } }}
-            />
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              U.S. social taxpayer id number
-            </Typography>
-            <TextField
-              variant="standard"
-              label="U.S. social taxpayer id number"
-              fullWidth
-              required
-            >
-              U.S. social taxpayer id number
-            </TextField>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
-              label="Does not apply"
-              sx={{ minWidth: { xs: 40, md: 150 } }}
-            />
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
-              U.S. social security area number
-            </Typography>
-            <TextField
-              variant="standard"
-              label="U.S. social security area number"
-              fullWidth
-              required
-            >
-              U.S. social security area number
-            </TextField>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
-              label="Does not apply"
-              sx={{ minWidth: { xs: 40, md: 150 } }}
-            />
-          </Stack>
-        </Grid>
-      </Grid>
-    </Container>
+              <Typography sx={{ fontSize: { xs: 20, md: 32 } }}>
+                Passport Information
+              </Typography>
+              <Divider
+                sx={{
+                  pt: { xs: 2, sm: 4 },
+                  mb: { xs: 2, sm: 4 },
+                  borderColor: "#1976d2",
+                }}
+              />
+              <Grid container spacing={{ xs: 1, sm: 3 }}>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Passport / Travel document type
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                    </Typography>
+
+                    <Field
+                      name="passportTravelDocumentType"
+                      as={TextField}
+                      select
+                      variant="standard"
+                      defaultValue=""
+                      fullWidth
+                      error={
+                        touched.passportTravelDocumentType &&
+                        errors.passportTravelDocumentType
+                      }
+                      helperText={
+                        touched.passportTravelDocumentType &&
+                        errors.passportTravelDocumentType
+                          ? errors.passportTravelDocumentType
+                          : null
+                      }
+                      label="Passport / Travel document type"
+                    >
+                      <MenuItem value="">Select document type</MenuItem>
+                      <MenuItem value="regular">Regular</MenuItem>
+                      <MenuItem value="official">Official</MenuItem>
+                      <MenuItem value="diplomatic">Diplomatic</MenuItem>
+                      <MenuItem value="laissez-passer">Laissez-passer</MenuItem>
+                      <MenuItem value="other">Other</MenuItem>
+                    </Field>
+                  </Stack>
+                </Grid>
+                {values.passportTravelDocumentType === "other" && (
+                  <Grid item xs={12}>
+                    <Stack
+                      spacing={2}
+                      direction={{ sx: "column", md: "row" }}
+                      alignItems={{ sx: "left", md: "center" }}
+                    >
+                      <Typography className="form-input-label">
+                        Explain
+                        <Typography
+                          component="span"
+                          className="form-input-required"
+                        >
+                          *
+                        </Typography>
+                        <Tooltip title="Please describe what type of document do you plan to use for travel and the reason">
+                          <IconButton>
+                            <HelpIcon className="form-input-tooltip" />
+                          </IconButton>
+                        </Tooltip>
+                      </Typography>
+                      <Field
+                        as={TextField}
+                        name="passportTravelDocumentTypeOtherExplain"
+                        multiline
+                        rows={5}
+                        sx={{
+                          mt: 2,
+                          width: { xs: "280px", sm: "440px", lg: "600px" },
+                        }}
+                        error={
+                          touched.passportTravelDocumentTypeOtherExplain &&
+                          errors.passportTravelDocumentTypeOtherExplain
+                        }
+                        helperText={
+                          touched.passportTravelDocumentTypeOtherExplain &&
+                          errors.passportTravelDocumentTypeOtherExplain
+                            ? errors.passportTravelDocumentTypeOtherExplain
+                            : null
+                        }
+                      ></Field>
+                    </Stack>
+                  </Grid>
+                )}
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Passport / Travel document number
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="Most passport numbers are 8 to 10 characters long. If the number you plan to add is much longer or much smaller that this check you are using the right number">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="passportTravelDocumentNumber"
+                      as={TextField}
+                      variant="standard"
+                      label="Travel document Number"
+                      fullWidth
+                      error={
+                        touched.passportTravelDocumentNumber &&
+                        errors.passportTravelDocumentNumber
+                      }
+                      helperText={
+                        touched.passportTravelDocumentNumber &&
+                        errors.passportTravelDocumentNumber
+                          ? errors.passportTravelDocumentNumber
+                          : null
+                      }
+                    ></Field>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Passport book number
+                      <Typography
+                        component="span"
+                        fontWeight="bold"
+                        color="red"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="The passport Book Number can also be called the Inventory Control Number. You may or may not have a Passport Book Number on your passport. If you are unable to determine whether on not your passport contains a Passport Book Number, you should reach out to your passport issuing authority.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="passportBookNumber"
+                      as={TextField}
+                      disabled={values.passportBookNumberDisabled}
+                      variant="standard"
+                      label="Passport book number"
+                      fullWidth
+                      error={
+                        touched.passportBookNumber && errors.passportBookNumber
+                      }
+                      helperText={
+                        touched.passportBookNumber && errors.passportBookNumber
+                          ? errors.passportBookNumber
+                          : null
+                      }
+                    ></Field>
+                    <FormControlLabel
+                      control={
+                        <Field
+                          as={Checkbox}
+                          name="passportBookNumberDisabled"
+                          color="primary"
+                        />
+                      }
+                      label="Does not apply"
+                      sx={{ minWidth: { xs: 40, md: 150 } }}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Country / Authority that issued the passport / travel
+                      document
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="Please choose the county which issued your travel document.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="countryAuthority"
+                      as={TextField}
+                      variant="standard"
+                      label="Select country"
+                      select
+                      fullWidth
+                      error={
+                        touched.countryAuthority && errors.countryAuthority
+                      }
+                      helperText={
+                        touched.countryAuthority && errors.countryAuthority
+                          ? errors.countryAuthority
+                          : null
+                      }
+                    >
+                      <MenuItem>Select country</MenuItem>
+                      {Object.keys(countries).map((item, pos) => {
+                        return (
+                          <MenuItem value={item} key={pos}>
+                            {countries[item]}
+                          </MenuItem>
+                        );
+                      })}
+                    </Field>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      City
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="Please identify on your travel document, the city where it was issued.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="city"
+                      as={TextField}
+                      variant="standard"
+                      label="City"
+                      fullWidth
+                      error={touched.city && errors.city}
+                      helperText={
+                        touched.city && errors.city ? errors.city : null
+                      }
+                    >
+                      Please choose the city where your travel document was
+                      issued.
+                    </Field>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      State / Region / Province
+                      <Tooltip title="Please identify on your travel document, the State / Region / Province where it was issued">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="stateRegionProvince"
+                      as={TextField}
+                      fullWidth
+                      variant="standard"
+                      label="Travel document Number"
+                      error={
+                        touched.stateRegionProvince &&
+                        errors.stateRegionProvince
+                      }
+                      helperText={
+                        touched.stateRegionProvince &&
+                        errors.stateRegionProvince
+                          ? errors.stateRegionProvince
+                          : null
+                      }
+                    ></Field>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Country / Region
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="Please identify on your travel document, the Country / Region where it was issued.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="countryRegion"
+                      as={TextField}
+                      variant="standard"
+                      label="Select country"
+                      select
+                      fullWidth
+                      error={touched.countryRegion && errors.countryRegion}
+                      helperText={
+                        touched.countryRegion && errors.countryRegion
+                          ? errors.countryRegion
+                          : null
+                      }
+                    >
+                      <MenuItem>Select country</MenuItem>
+                      {Object.keys(countries).map((item, pos) => {
+                        return (
+                          <MenuItem value={item} key={pos}>
+                            {countries[item]}
+                          </MenuItem>
+                        );
+                      })}
+                    </Field>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Passport issuance date
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="Please find this date on your passport or travel document.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="passportIssuanceDate"
+                      as={TextField}
+                      label="Passport issuance date"
+                      variant="standard"
+                      type="date"
+                      fullWidth
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      error={
+                        touched.passportIssuanceDate &&
+                        errors.passportIssuanceDate
+                      }
+                      helperText={
+                        touched.passportIssuanceDate &&
+                        errors.passportIssuanceDate
+                          ? errors.passportIssuanceDate
+                          : null
+                      }
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Passport expiration date
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="Please identify on your travel document, the city where it was issued.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="passportExpirationDate"
+                      as={TextField}
+                      disabled={values.passportExpirationDateDisabled}
+                      label="Passport expiration date"
+                      variant="standard"
+                      type="date"
+                      fullWidth
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      error={
+                        touched.passportExpirationDate &&
+                        errors.passportExpirationDate
+                      }
+                      helperText={
+                        touched.passportExpirationDate &&
+                        errors.passportExpirationDate
+                          ? errors.passportExpirationDate
+                          : null
+                      }
+                    />
+                    <FormControlLabel
+                      control={
+                        <Field
+                          name="passportExpirationDateDisabled"
+                          as={Checkbox}
+                          color="primary"
+                        />
+                      }
+                      label="No Expiration"
+                      sx={{ minWidth: { xs: 40, md: 150 } }}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Have you ever lost a passport or had one stolen?
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                    </Typography>
+                    <Field
+                      name="lostPassport"
+                      as={RadioGroup}
+                      row
+                      error={touched.lostPassport && errors.lostPassport}
+                      helperText={
+                        touched.lostPassport && errors.lostPassport
+                          ? errors.lostPassport
+                          : null
+                      }
+                    >
+                      <FormControlLabel
+                        control={<Radio />}
+                        label="Yes"
+                        value="true"
+                      />
+                      <FormControlLabel
+                        control={<Radio />}
+                        label="No"
+                        value="false"
+                      />
+                    </Field>
+                  </Stack>
+                </Grid>
+                {values.lostPassport === "true" && (
+                  <>
+                    <Grid item xs={12}>
+                      <Stack
+                        spacing={2}
+                        direction={{ sx: "column", md: "row" }}
+                        alignItems={{ sx: "left", md: "center" }}
+                      >
+                        <Typography className="form-input-label">
+                          Passport / Travel document number
+                          <Typography
+                            component="span"
+                            className="form-input-required"
+                          >
+                            *
+                          </Typography>
+                        </Typography>
+                        <Field
+                          name="lostPassportDocumentNumber"
+                          as={TextField}
+                          disabled={values.lostPassportDocumentNumberDisabled}
+                          label="Passport document number"
+                          variant="standard"
+                          fullWidth
+                          error={
+                            touched.lostPassportDocumentNumber &&
+                            errors.lostPassportDocumentNumber
+                          }
+                          helperText={
+                            touched.lostPassportDocumentNumber &&
+                            errors.lostPassportDocumentNumber
+                              ? errors.lostPassportDocumentNumber
+                              : null
+                          }
+                        />
+                        <FormControlLabel
+                          control={
+                            <Field
+                              name="lostPassportDocumentNumberDisabled"
+                              as={Checkbox}
+                              color="primary"
+                            />
+                          }
+                          label="Don't know"
+                          sx={{ minWidth: { xs: 40, md: 150 } }}
+                        />
+                      </Stack>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Stack
+                        spacing={2}
+                        direction={{ sx: "column", md: "row" }}
+                        alignItems={{ sx: "left", md: "center" }}
+                      >
+                        <Typography className="form-input-label">
+                          Country / Authority that issued the passport / travel
+                          document
+                          <Typography
+                            component="span"
+                            className="form-input-required"
+                          >
+                            *
+                          </Typography>
+                          <Tooltip title="Please identify on your travel document, the Country / Region where it was issued.">
+                            <IconButton>
+                              <HelpIcon className="form-input-tooltip" />
+                            </IconButton>
+                          </Tooltip>
+                        </Typography>
+                        <Field
+                          name="lostPassportCountryAuthorityIssued"
+                          as={TextField}
+                          variant="standard"
+                          label="Select country"
+                          select
+                          fullWidth
+                          error={
+                            touched.lostPassportCountryAuthorityIssued &&
+                            errors.lostPassportCountryAuthorityIssued
+                          }
+                          helperText={
+                            touched.lostPassportCountryAuthorityIssued &&
+                            errors.lostPassportCountryAuthorityIssued
+                              ? errors.lostPassportCountryAuthorityIssued
+                              : null
+                          }
+                        >
+                          <MenuItem>Select country</MenuItem>
+                          {Object.keys(countries).map((item, pos) => {
+                            return (
+                              <MenuItem value={item} key={pos}>
+                                {countries[item]}
+                              </MenuItem>
+                            );
+                          })}
+                        </Field>
+                      </Stack>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Stack
+                        spacing={2}
+                        direction={{ sx: "column", md: "row" }}
+                        alignItems={{ sx: "left", md: "center" }}
+                      >
+                        <Typography className="form-input-label">
+                          Explain
+                          <Typography
+                            component="span"
+                            className="form-input-required"
+                          >
+                            *
+                          </Typography>
+                          <Tooltip title="Please describe what type of document do you plan to use for travel and the reason">
+                            <IconButton>
+                              <HelpIcon className="form-input-tooltip" />
+                            </IconButton>
+                          </Tooltip>
+                        </Typography>
+                        <Field
+                          name="lostPassportExplain"
+                          as={TextField}
+                          rows={5}
+                          sx={{
+                            mt: 2,
+                            width: { xs: "280px", sm: "440px", lg: "600px" },
+                          }}
+                          multiline
+                          error={
+                            touched.lostPassportExplain &&
+                            errors.lostPassportExplain
+                          }
+                          helperText={
+                            touched.lostPassportExplain &&
+                            errors.lostPassportExplain
+                              ? errors.lostPassportExplain
+                              : null
+                          }
+                        ></Field>
+                      </Stack>
+                    </Grid>
+                  </>
+                )}
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Country / Region of origin ( Nationality )
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="Please select the country of citizenship as displayed on your passport or travel document..">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="lostPassportCountryAuthorityIssued"
+                      as={TextField}
+                      variant="standard"
+                      label="Select country"
+                      select
+                      fullWidth
+                      error={
+                        touched.lostPassportCountryAuthorityIssued &&
+                        errors.lostPassportCountryAuthorityIssued
+                      }
+                      helperText={
+                        touched.lostPassportCountryAuthorityIssued &&
+                        errors.lostPassportCountryAuthorityIssued
+                          ? errors.lostPassportCountryAuthorityIssued
+                          : null
+                      }
+                    >
+                      <MenuItem>Select country</MenuItem>
+                      {Object.keys(countries).map((item, pos) => {
+                        return (
+                          <MenuItem value={item} key={pos}>
+                            {countries[item]}
+                          </MenuItem>
+                        );
+                      })}
+                    </Field>
+                  </Stack>
+                </Grid>
+              </Grid>
+              <Typography variant="h4" paddingTop={10}>
+                Additional Nationalities
+              </Typography>
+              <Divider sx={{ pt: 4, mb: 4, borderColor: "#1976d2" }} />
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Do you hold or have you held any nationality other that
+                      the one indicated above on nationality?
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                    </Typography>
+
+                    <Field name="otherNationality" as={RadioGroup} row>
+                      <FormControlLabel
+                        value="true"
+                        control={<Radio />}
+                        label="Yes"
+                      />
+                      <FormControlLabel
+                        value="false"
+                        control={<Radio />}
+                        label="No"
+                      />
+                    </Field>
+                  </Stack>
+                </Grid>
+                {values.otherNationality === "true" && (
+                  <>
+                    <Grid item xs={12}>
+                      <Stack
+                        spacing={2}
+                        direction={{ sx: "column", md: "row" }}
+                        alignItems={{ sx: "left", md: "center" }}
+                      >
+                        <Typography className="form-input-label">
+                          Other country / region of origin ( nationality )
+                          <Typography
+                            component="span"
+                            className="form-input-required"
+                          >
+                            *
+                          </Typography>
+                        </Typography>
+                        <Field
+                          name="otherNationalityCountry"
+                          as={TextField}
+                          variant="standard"
+                          label="Select country"
+                          select
+                          fullWidth
+                          error={
+                            touched.otherNationalityCountry &&
+                            errors.otherNationalityCountry
+                          }
+                          helperText={
+                            touched.otherNationalityCountry &&
+                            errors.otherNationalityCountry
+                              ? errors.otherNationalityCountry
+                              : null
+                          }
+                        >
+                          <MenuItem>Select country</MenuItem>
+                          {Object.keys(countries).map((item, pos) => {
+                            return (
+                              <MenuItem value={item} key={pos}>
+                                {countries[item]}
+                              </MenuItem>
+                            );
+                          })}
+                        </Field>
+                      </Stack>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Stack
+                        spacing={2}
+                        direction={{ sx: "column", md: "row" }}
+                        alignItems={{ sx: "left", md: "center" }}
+                      >
+                        <Typography className="form-input-label">
+                          Do you hold a passport for the other country / region
+                          of origin ( nationality) above ?
+                          <Typography
+                            component="span"
+                            className="form-input-required"
+                          >
+                            *
+                          </Typography>
+                        </Typography>
+                        <Field
+                          name="otherNationalityPassport"
+                          as={RadioGroup}
+                          row
+                        >
+                          <FormControlLabel
+                            value="true"
+                            control={<Radio />}
+                            label="Yes"
+                          />
+                          <FormControlLabel
+                            value="false"
+                            control={<Radio />}
+                            label="No"
+                          />
+                        </Field>
+                      </Stack>
+                    </Grid>
+                  </>
+                )}
+
+                {values.otherNationality === "true" &&
+                  values.otherNationalityPassport === "true" && (
+                    <Grid item xs={12}>
+                      <Stack
+                        spacing={2}
+                        direction={{ sx: "column", md: "row" }}
+                        alignItems={{ sx: "left", md: "center" }}
+                      >
+                        <Typography className="form-input-label">
+                          Passport / Travel document number
+                          <Typography
+                            component="span"
+                            className="form-input-required"
+                          >
+                            *
+                          </Typography>
+                          <Tooltip title="The National Identification Number can also be know as the National ID Number and it is a unique number that your government provides to all citizens. You should be able ti locate this number on another ID issued by your country's government.">
+                            <IconButton>
+                              <HelpIcon className="form-input-tooltip" />
+                            </IconButton>
+                          </Tooltip>
+                        </Typography>
+                        <Field
+                          name="otherNationalityCountryRegionTravelDocumentNumber"
+                          as={TextField}
+                          variant="standard"
+                          label="Passport number"
+                          fullWidth
+                          error={
+                            touched.otherNationalityCountry &&
+                            errors.otherNationalityCountry
+                          }
+                          helperText={
+                            touched.otherNationalityCountryRegionTravelDocumentNumber &&
+                            errors.otherNationalityCountryRegionTravelDocumentNumber
+                              ? errors.otherNationalityCountryRegionTravelDocumentNumber
+                              : "Enter the passport number exactly as it appears on the passport information page"
+                          }
+                        ></Field>
+                      </Stack>
+                    </Grid>
+                  )}
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      Are you a permanent resident of a country / region other
+                      than your country / region of origin (nationality)
+                      indicated above ?
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                    </Typography>
+                    <Field name="otherCountryRegionAbove" as={RadioGroup} row>
+                      <FormControlLabel
+                        value="true"
+                        control={<Radio />}
+                        label="Yes"
+                      />
+                      <FormControlLabel
+                        value="false"
+                        control={<Radio />}
+                        label="No"
+                      />
+                    </Field>
+                  </Stack>
+                </Grid>
+                {values.otherCountryRegionAbove === "true" && (
+                  <Grid item xs={12}>
+                    <Stack
+                      spacing={2}
+                      direction={{ sx: "column", md: "row" }}
+                      alignItems={{ sx: "left", md: "center" }}
+                    >
+                      <Typography className="form-input-label">
+                        Other permanent resident country / region
+                        <Typography
+                          component="span"
+                          className="form-input-required"
+                        >
+                          *
+                        </Typography>
+                      </Typography>
+                      <Field
+                        name="otherCountryRegionAbovePermanentResident"
+                        as={TextField}
+                        variant="standard"
+                        label="Select country"
+                        select
+                        fullWidth
+                        error={
+                          touched.otherCountryRegionAbovePermanentResident &&
+                          errors.otherCountryRegionAbovePermanentResident
+                        }
+                        helperText={
+                          touched.otherCountryRegionAbovePermanentResident &&
+                          errors.otherCountryRegionAbovePermanentResident
+                            ? errors.otherCountryRegionAbovePermanentResident
+                            : null
+                        }
+                      >
+                        <MenuItem>Select country</MenuItem>
+                        {Object.keys(countries).map((item, pos) => {
+                          return (
+                            <MenuItem value={item} key={pos}>
+                              {countries[item]}
+                            </MenuItem>
+                          );
+                        })}
+                      </Field>
+                    </Stack>
+                  </Grid>
+                )}
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      National identification number
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="The National Identification Number can also be know as the National ID Number and it is a unique number that your government provides to all citizens. You should be able ti locate this number on another ID issued by your country's government.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="nationalIdentificationNumber"
+                      as={TextField}
+                      disabled={values.nationalIdentificationNumberDisabled}
+                      variant="standard"
+                      label="National identification number"
+                      fullWidth
+                      error={
+                        touched.otherCountryRegionAbovePermanentResident &&
+                        errors.otherCountryRegionAbovePermanentResident
+                      }
+                      helperText={
+                        touched.otherCountryRegionAbovePermanentResident &&
+                        errors.otherCountryRegionAbovePermanentResident
+                          ? errors.otherCountryRegionAbovePermanentResident
+                          : "Please fill in your National Identification Number"
+                      }
+                    ></Field>
+                    <FormControlLabel
+                      control={
+                        <Field
+                          name="nationalIdentificationNumberDisabled"
+                          as={Checkbox}
+                          color="primary"
+                          value="yes"
+                        />
+                      }
+                      label="Does not apply"
+                      sx={{ minWidth: { xs: 40, md: 150 } }}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      U.S. social security group number
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="The US Government provides unique numbers to those who seek employment (Social Security Number). Please identify and fill in the U.S. Social Security group number, where applicable.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="usSocialSecurityGroup"
+                      as={TextField}
+                      disabled={values.usSocialSecurityGroupDisabled}
+                      variant="standard"
+                      label="U.S. social security area number"
+                      fullWidth
+                      error={
+                        touched.usSocialSecurityGroup &&
+                        errors.usSocialSecurityGroup
+                      }
+                      helperText={
+                        touched.usSocialSecurityGroup &&
+                        errors.usSocialSecurityGroup
+                          ? errors.usSocialSecurityGroup
+                          : "Please fill in U.S. Social Security area number"
+                      }
+                    >
+                      U.S. social security area number
+                      <HelpIcon sx={{ ml: 0.5, mb: 0.5 }} />
+                    </Field>
+                    <FormControlLabel
+                      control={
+                        <Field
+                          name="usSocialSecurityGroupDisabled"
+                          as={Checkbox}
+                          color="primary"
+                          value="yes"
+                        />
+                      }
+                      label="Does not apply"
+                      sx={{ minWidth: { xs: 40, md: 150 } }}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      U.S. social security serial number
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="The US Government provides unique numbers to those who seek employment (Social Security Number). Please identify and fill in the U.S. Social Security Serial number, where applicable.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="usSocialSecuritySerialNumber"
+                      as={TextField}
+                      disabled={values.usSocialSecuritySerialNumberDisabled}
+                      variant="standard"
+                      label="U.S. social security serial number"
+                      fullWidth
+                      error={
+                        touched.usSocialSecuritySerialNumber &&
+                        errors.usSocialSecuritySerialNumber
+                      }
+                      helperText={
+                        touched.usSocialSecuritySerialNumber &&
+                        errors.usSocialSecuritySerialNumber
+                          ? errors.usSocialSecuritySerialNumber
+                          : "Please fill in U.S. Social Security Serial number"
+                      }
+                    ></Field>
+                    <FormControlLabel
+                      control={
+                        <Field
+                          name="usSocialSecuritySerialNumberDisabled"
+                          as={Checkbox}
+                          color="primary"
+                          value="yes"
+                        />
+                      }
+                      label="Does not apply"
+                      sx={{ minWidth: { xs: 40, md: 150 } }}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      U.S. social security area number
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="Please identify on your travel document, the city where it was issued.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="usSocialSecurityAreaNumber"
+                      as={TextField}
+                      disabled={values.usSocialSecurityAreaNumberDisabled}
+                      variant="standard"
+                      label="U.S. social security area number"
+                      fullWidth
+                      error={
+                        touched.usSocialSecurityAreaNumber &&
+                        errors.usSocialSecurityAreaNumber
+                      }
+                      helperText={
+                        touched.usSocialSecurityAreaNumber &&
+                        errors.usSocialSecurityAreaNumber
+                          ? errors.usSocialSecurityAreaNumber
+                          : "Please fill in the U.S. Taxpayer ID Number"
+                      }
+                    >
+                      U.S. social security area number
+                      <HelpIcon sx={{ ml: 0.5, mb: 0.5 }} />
+                    </Field>
+                    <FormControlLabel
+                      control={
+                        <Field
+                          name="usSocialSecurityAreaNumberDisabled"
+                          as={Checkbox}
+                          color="primary"
+                          value="yes"
+                        />
+                      }
+                      label="Does not apply"
+                      sx={{ minWidth: { xs: 40, md: 150 } }}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack
+                    spacing={2}
+                    direction={{ sx: "column", md: "row" }}
+                    alignItems={{ sx: "left", md: "center" }}
+                  >
+                    <Typography className="form-input-label">
+                      U.S. social taxpayer id number
+                      <Typography
+                        component="span"
+                        className="form-input-required"
+                      >
+                        *
+                      </Typography>
+                      <Tooltip title="The US Government provides unique numbers, also name Taxpayer IDs, to individuals who pay taxes. Please identify and fill in the U.S. Taxpayer ID Number, if applicable.">
+                        <IconButton>
+                          <HelpIcon className="form-input-tooltip" />
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                    <Field
+                      name="usSocialTaxpayerNumber"
+                      as={TextField}
+                      disabled={values.usSocialTaxpayerNumberDisabled}
+                      variant="standard"
+                      label="U.S. social taxpayer id number"
+                      fullWidth
+                      error={
+                        touched.usSocialTaxpayerNumber &&
+                        errors.usSocialTaxpayerNumber
+                      }
+                      helperText={
+                        touched.usSocialTaxpayerNumber &&
+                        errors.usSocialTaxpayerNumber
+                          ? errors.usSocialTaxpayerNumber
+                          : "Please fill in the U.S. Taxpayer ID Number"
+                      }
+                    >
+                      U.S. social taxpayer id number
+                    </Field>
+                    <FormControlLabel
+                      control={
+                        <Field
+                          name="usSocialTaxpayerNumberDisabled"
+                          as={Checkbox}
+                          color="primary"
+                        />
+                      }
+                      label="Does not apply"
+                      sx={{ minWidth: { xs: 40, md: 150 } }}
+                    />
+                  </Stack>
+                </Grid>
+              </Grid>
+            </Container>
+            <Button type="submit">Test Form</Button>
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 }
 

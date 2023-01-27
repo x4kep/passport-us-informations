@@ -31,14 +31,14 @@ function TripDetails() {
         <Grid item xs={12}>
           <Stack
             direction={{ sx: "column", md: "row" }}
-            spacing={2}
-            sx={{ justifyContent: "space-between" }}
             alignItems={{ sx: "left", md: "center" }}
+            spacing={2}
           >
             <Typography
-              className="label"
+              className="form-input-label"
               maxWidth={{ sx: "100%", md: "30%" }}
               minWidth={{ sx: "100%", md: "30%" }}
+              sx={{ display: "flex", alignItems: "center" }}
             >
               Select a location where you will be applying for visa
             </Typography>
@@ -267,7 +267,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Reason for the trip
             </Typography>
             <TextField
@@ -279,12 +283,7 @@ function TripDetails() {
           </Stack>
         </Grid>
         <Grid item xs={12}>
-          <Box
-            sx={{
-              border: "1px solid #1976d2",
-              padding: "10px",
-            }}
-          >
+          <Box className="box-border-wrapper">
             <Typography
               component="h2"
               sx={{ fontWeight: "bold", fontSize: "16px" }}
@@ -293,14 +292,15 @@ function TripDetails() {
             </Typography>
             <Stack
               direction={{ sx: "column", md: "row" }}
+              alignItems={{ sx: "left", md: "center" }}
               spacing={2}
               sx={{ pt: 3, justifyContent: "space-between" }}
-              alignItems={{ sx: "left", md: "center" }}
             >
               <Typography
-                className="label"
+                className="form-input-label"
                 maxWidth={{ sx: "100%", md: "30%" }}
                 minWidth={{ sx: "100%", md: "30%" }}
+                sx={{ display: "flex", alignItems: "center" }}
               >
                 Purpose of trip to the us.
               </Typography>
@@ -311,14 +311,14 @@ function TripDetails() {
             </Stack>
             <Stack
               direction={{ sx: "column", md: "row" }}
+              alignItems={{ sx: "left", md: "center" }}
               spacing={2}
               sx={{ pt: 3, justifyContent: "space-between" }}
-              alignItems={{ sx: "left", md: "center" }}
             >
               <Typography
-                className="label"
+                className="form-input-label"
                 maxWidth={{ sx: "100%", md: "30%" }}
-                minWidth={{ sx: "100%", md: "30%" }}
+                sx={{ display: "flex", alignItems: "center" }}
               >
                 Specify
               </Typography>
@@ -336,69 +336,93 @@ function TripDetails() {
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Have you made specific travel plans ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
             </RadioGroup>
           </Stack>
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Are there other persons tra veling with you ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
             </RadioGroup>
           </Stack>
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Have you ever been in the U.S. ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
             </RadioGroup>
           </Stack>
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Have you ever been issued a U.S. visa ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
             </RadioGroup>
           </Stack>
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Have you ever been refused a u.s. visa, or been refused admission
               to the united states, or withdraw your application for admission
               at the port of entry ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
             </RadioGroup>
           </Stack>
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Has anyone ever filed an immigrant petition on your behalf withh
               the united states citizenship and immigration service ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
             </RadioGroup>
           </Stack>
@@ -406,14 +430,14 @@ function TripDetails() {
         <Grid item xs={12}>
           <Stack
             direction={{ sx: "column", md: "row" }}
+            alignItems={{ sx: "left", md: "center" }}
             spacing={2}
             sx={{ pt: 3, justifyContent: "space-between" }}
-            alignItems={{ sx: "left", md: "center" }}
           >
             <Typography
-              className="label"
+              className="form-input-label"
               maxWidth={{ sx: "100%", md: "30%" }}
-              minWidth={{ sx: "100%", md: "30%" }}
+              sx={{ display: "flex", alignItems: "center" }}
             >
               Person paying for trip.
             </Typography>
@@ -434,7 +458,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               First name of the person paying for trip
             </Typography>
             <TextField
@@ -451,7 +479,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Last name of the person paying for trip
             </Typography>
             <TextField
@@ -468,7 +500,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Telephone number
             </Typography>
             <TextField
@@ -485,7 +521,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Email Address
             </Typography>
             <TextField
@@ -497,9 +537,7 @@ function TripDetails() {
               Please make sure you have completed the State / Province.
             </TextField>
             <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
+              control={<Checkbox color="primary" name="saveAddress" />}
               label="Does not apply"
               sx={{ minWidth: { xs: 40, md: 150 } }}
             />
@@ -511,7 +549,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Relationship to you
             </Typography>
             <NativeSelect fullWidth>
@@ -532,7 +574,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Company payer name
             </Typography>
             <TextField
@@ -549,7 +595,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Telephone number
             </Typography>
             <TextField
@@ -566,7 +616,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Relationship to you
             </Typography>
             <TextField
@@ -583,7 +637,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Street address (line 1)
             </Typography>
             <TextField
@@ -600,7 +658,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Street address (line 1)
             </Typography>
             <TextField
@@ -617,7 +679,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               City
             </Typography>
             <TextField
@@ -634,7 +700,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               State / Province
             </Typography>
             <TextField
@@ -646,9 +716,7 @@ function TripDetails() {
               Please make sure you have completed the State / Province.
             </TextField>
             <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
+              control={<Checkbox color="primary" name="saveAddress" />}
               label="Does not apply"
               sx={{ minWidth: { xs: 40, md: 150 } }}
             />
@@ -660,7 +728,11 @@ function TripDetails() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Postal zone / zip code
             </Typography>
             <TextField
@@ -672,9 +744,7 @@ function TripDetails() {
               Please make sure you have Postal zone / zip code.
             </TextField>
             <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
+              control={<Checkbox color="primary" name="saveAddress" />}
               label="Does not apply"
               sx={{ minWidth: { xs: 40, md: 150 } }}
             />
@@ -683,14 +753,15 @@ function TripDetails() {
         <Grid item xs={12}>
           <Stack
             direction={{ sx: "column", md: "row" }}
+            alignItems={{ sx: "left", md: "center" }}
             spacing={2}
             sx={{ pt: 3, justifyContent: "space-between" }}
             alignItems={{ sx: "left", md: "center" }}
           >
             <Typography
-              className="label"
+              className="form-input-label"
               maxWidth={{ sx: "100%", md: "30%" }}
-              minWidth={{ sx: "100%", md: "30%" }}
+              sx={{ display: "flex", alignItems: "center" }}
             >
               Country
             </Typography>

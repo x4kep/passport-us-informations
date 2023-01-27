@@ -31,13 +31,20 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Street address ( line 1 )
             </Typography>
             <TextField
               fullWidth
               variant="standard"
               label="Street address ( line 1 )"
+              helperText="Incorrect entry."
+              helperError
+              autoFocus
               required
             >
               Enter the passport number exactly as it appears on the passport
@@ -51,7 +58,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Street address ( line 2 )
             </Typography>
             <TextField
@@ -70,7 +81,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               City
             </Typography>
             <TextField
@@ -87,7 +102,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               State / Province
             </Typography>
             <TextField
@@ -99,9 +118,7 @@ function ContactInformation() {
               Please make sure you have completed the State / Province.
             </TextField>
             <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
+              control={<Checkbox color="primary" name="saveAddress" />}
               label="Does not apply"
               sx={{ minWidth: { xs: 40, md: 150 } }}
             />
@@ -113,7 +130,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Postal zone / Zip code
             </Typography>
             <TextField
@@ -125,9 +146,7 @@ function ContactInformation() {
               Please make sure you have completed the Postal Zone/Zip Code.
             </TextField>
             <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
+              control={<Checkbox color="primary" name="saveAddress" />}
               label="Does not apply"
               sx={{ minWidth: { xs: 40, md: 150 } }}
             />
@@ -139,7 +158,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Country / Region
             </Typography>
             <NativeSelect defaultValue="regular" fullWidth>
@@ -407,11 +430,15 @@ function ContactInformation() {
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Is your mailing address the same as your home address ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel value="noo" control={<Radio />} label="No" />
             </RadioGroup>
           </Stack>
@@ -422,7 +449,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Primary phone number
             </Typography>
             <TextField
@@ -441,7 +472,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Secondary phone number
             </Typography>
             <TextField
@@ -460,7 +495,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Work phone number
             </Typography>
             <TextField
@@ -475,11 +514,15 @@ function ContactInformation() {
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Have you used any other phone numbers inn the last five years?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel
                 value="no"
                 control={<Radio />}
@@ -491,11 +534,15 @@ function ContactInformation() {
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Have you used any other email addresses in the last five years ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel
                 value="no"
                 control={<Radio />}
@@ -511,7 +558,11 @@ function ContactInformation() {
             spacing={2}
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Social media provider / platform
             </Typography>
             <NativeSelect defaultValue="regular" fullWidth>
@@ -528,14 +579,18 @@ function ContactInformation() {
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Typography className="label" maxWidth="30%" minWidth="30%">
+            <Typography
+              className="form-input-label"
+              maxWidth="30%"
+              minWidth="30%"
+            >
               Do you wish to provide information about your presence oon any
               other websites or applications you have used within the last five
               years to create or share content (Photo, videos, status updates,
               etc.) ?
             </Typography>
             <RadioGroup row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel control={<Radio />} label="Yes" />
               <FormControlLabel
                 value="no"
                 control={<Radio />}

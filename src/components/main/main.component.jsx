@@ -10,6 +10,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormLabel from "@mui/material/FormLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import nationalities from "../../data/nationalities.json";
 
 function Main() {
   return (
@@ -42,14 +43,13 @@ function Main() {
                   id: "uncontrolled-native",
                 }}
               >
-                <option value={0}>Please choose citizenship</option>
-                <option value={1}>English</option>
-                <option value={2}>Nederlands</option>
-                <option value={3}>Français</option>
-                <option value={4}>Deutsch</option>
-                <option value={5}>Italiano</option>
-                <option value={6}>Русский</option>
-                <option value={7}>Español</option>
+                {Object.keys(nationalities).map((item, pos) => {
+                  return (
+                    <option value={item} key={pos}>
+                      {nationalities[item]}
+                    </option>
+                  );
+                })}
               </NativeSelect>
             </FormControl>
           </Box>

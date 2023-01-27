@@ -16,7 +16,7 @@ import EmploymentEducation from "./forms/employment-education.component";
 import SecurityQuestion from "./forms/security-question.component";
 import ReviewCertification from "./forms/review-certification.component";
 
-import { Divider } from "@mui/material";
+import { Divider, Paper } from "@mui/material";
 
 const steps = [
   "Application Information",
@@ -117,8 +117,8 @@ const VisaDetails = () => {
     >
       <Box
         sx={{
-          pl: "10%",
-          pr: "10%",
+          pl: { xs: "0%", sm: "5%", md: "10%" },
+          pr: { xs: "0%", sm: "5%", md: "10%" },
           pb: 3,
           textAlign: "center",
         }}
@@ -157,16 +157,25 @@ const VisaDetails = () => {
           person.
         </Typography>
       </Box>
-      <Box sx={{ pl: "10%", pr: "10%", width: "100%", minHeight: "300px" }}>
-        <Stepper nonLinear activeStep={activeStep} sx={{ pl: 1 }}>
+      <Box
+        sx={{
+          pl: { xs: "0%", sm: "5%", md: "10%" },
+          pr: { xs: "0%", sm: "5%", md: "10%" },
+          width: "100%",
+          minHeight: "300px",
+        }}
+      >
+        <Stepper alternativeLabel activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
-              <StepButton
-                color="inherit"
-                onClick={handleStep(index)}
-                sx={{ pl: 1 }}
-              >
-                {label}
+              <StepButton color="inherit" onClick={handleStep(index)}>
+                <Typography
+                  fontSize={{ md: 8, lg: 12, xl: 16 }}
+                  fontWeight="bold"
+                  display={{ p: 0, xs: "none", md: "block" }}
+                >
+                  {label}
+                </Typography>
               </StepButton>
             </Step>
           ))}
@@ -184,40 +193,45 @@ const VisaDetails = () => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <Box
+              <Paper
+                elevation={2}
                 sx={{
+                  pt: 2,
                   pl: 2,
                   pr: 2,
-                  mt: 3,
+                  mt: { xs: 1, sm: 3 },
                   borderTopRightRadius: 6,
                   borderTopLeftRadius: 6,
+                  borderBottomRightRadius: 0,
+                  borderBottomLeftRadius: 0,
                   backgroundColor: "#f2f2f2",
                 }}
               >
                 {getStepContent(activeStep)}
-              </Box>
-              <Divider></Divider>{" "}
-              <Box
-                sx={{
-                  p: 2,
-                  display: "flex",
-                  flexDirection: "row",
-                  backgroundColor: "#f2f2f2",
-                }}
-              >
-                <Button
-                  color="inherit"
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  sx={{ mr: 1 }}
+                <Divider sx={{ borderColor: "#b9b9b9" }}></Divider>{" "}
+                <Box
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "row",
+                    backgroundColor: "#f2f2f2",
+                    borderTopRightRadius: 0,
+                    borderTopLeftRadius: 0,
+                  }}
                 >
-                  Previous step
-                </Button>
-                <Box sx={{ flex: "1 1 auto" }} />
-                <Button onClick={handleNext} sx={{ mr: 1 }}>
-                  Next step
-                </Button>
-                {/* {activeStep !== steps.length &&
+                  <Button
+                    color="inherit"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1 }}
+                  >
+                    Previous step
+                  </Button>
+                  <Box sx={{ flex: "1 1 auto" }} />
+                  <Button onClick={handleNext} sx={{ mr: 1 }}>
+                    Next step
+                  </Button>
+                  {/* {activeStep !== steps.length &&
                   (completed[activeStep] ? (
                     <Typography
                       variant="caption"
@@ -232,7 +246,8 @@ const VisaDetails = () => {
                         : "Complete Step"}
                     </Button>
                   ))} */}
-              </Box>
+                </Box>
+              </Paper>
             </React.Fragment>
           )}
         </div>

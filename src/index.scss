@@ -10,6 +10,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: calc(100vh - 320px);
+  padding-right: 0 !important; /* Fix issues with Popover*/
+  overflow: visible !important;
 }
 
 * {
@@ -155,8 +157,39 @@ table {
   padding: 0 1 px;
 }
 
-.label {
+.form-input-label {
   text-transform: uppercase;
   font-weight: bold !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
   color: #024c8b;
+
+  @media only screen and (min-width: 600px) {
+    min-width: 30%;
+    max-width: 30%;
+  }
+
+  @media only screen and (max-width: 899px) {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+.form-input-tooltip {
+  position: absolute;
+  left: 7px;
+  bottom: 0;
+  color: #024c8b;
+  padding: 1px;
+}
+
+.form-input-required {
+  font-weight: bold;
+  color: red;
+  position: absolute;
+}
+
+.box-border-wrapper {
+  border: 1px solid #1976d2;
+  padding: 10px;
 }
