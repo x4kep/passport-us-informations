@@ -211,7 +211,6 @@ function PassportInformation() {
       >
         {({ values, errors, touched }) => (
           <Form>
-            {/* <Field name="passportTravelDocumentType"></Field> */}
             <pre>{JSON.stringify(values, null, 4)}</pre>
             <pre>{JSON.stringify(errors, null, 4)}</pre>
             <Container

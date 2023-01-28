@@ -1,6 +1,6 @@
 # TODO
 
-1. Create small reusable components for inputs that are using Formnik & Yep
+1. Create small reusable components for inputs that are using MUI & Formnik & Yep (Wrapper)
 2. Stack wrapper for Stack that keep inputs labels etc
 3. Keep form state steps
 4. Send all forms to Strapi
@@ -12,6 +12,10 @@
 10. Dynamic inputs ( Add inputs )
 11. Custom Check box with Icons
 12. Validate passport if it contains Face image
+13. Responsive Header
+14. Responsive Footer
+15. Responsive GetStarted
+16. Responsive Summary
 
 # Getting Started with Create React App
 
