@@ -1,3 +1,8 @@
+# Project description
+
+Create clone of https://evisa.us.com/
+After user populate all forms post data to Strapi Headless CMS ( Where client can review applications )
+
 # TODO
 
 1. Create small reusable components for inputs that are using MUI & Formnik & Yep (Wrapper)
