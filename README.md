@@ -1,3 +1,18 @@
+# TODO
+
+1. Create small reusable components for inputs that are using Formnik & Yep
+2. Stack wrapper for Stack that keep inputs labels etc
+3. Keep form state steps
+4. Send all forms to Strapi
+5. Research how Strapi works
+6. Set up Strapi enviroment
+7. Find number inputs
+8. Flag Country Select ( getIcons )
+9. Translation ( After MVP)
+10. Dynamic inputs ( Add inputs )
+11. Custom Check box with Icons
+12. Validate passport if it contains Face image
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
